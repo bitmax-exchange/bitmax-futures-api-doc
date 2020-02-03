@@ -88,7 +88,7 @@ For instance, the symbol of the BTC perpetrual contract is `BTC-PERP`.
 
 ## Making REST API Calls
 
-The RESTful APIs will always repond with JSON objects. 
+The RESTful APIs will always respond with JSON objects. 
 
 
 
