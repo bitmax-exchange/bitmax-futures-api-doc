@@ -23,13 +23,16 @@
     ],
     "page"    : 1,
     "pageSize": 20,
-    "hasNext" : False
+    "hasNext" : false
   }
 }
 ```
 
 You can obtain history of wallet deposit/withdrawal transactions via this API.
 
+#### Permissions 
+
+You need view permission to access this API.
 
 #### HTTP Request 
 

@@ -5,7 +5,7 @@
 ```json
 {
     "op": "req",
-    "action": "cancel-All",
+    "action": "cancel-all",
     "args": {}
 }
 ```
@@ -15,7 +15,7 @@
 ```json
 {
     "op": "req",
-    "action": "cancel-All",
+    "action": "cancel-all",
     "account": "futures",
     "args": {
         "symbol": "BTC-PERP"
@@ -44,11 +44,11 @@
 
 Cancel all open orders on account level via websocket with optional symbol.
 
-**Request**
+#### Request
 
 Make general websocket request with `action` field as `cancel-All` and set proper `account` value (`futures`), and provide *time* value in *args*.
 
-**Response**
+#### Response
 
 With *status* field as *Ack* to indicate this cancel all order request has been received by server and sent to matching engine. 
 

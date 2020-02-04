@@ -54,10 +54,13 @@ curl -X GET https://bitmax-test.io/futures/market-data?symbol=BTC-PERP,
 ```
 
 
+#### Permissions 
+
+This API is public. 
+
 #### HTTP Request
 
 `GET /api/pro/v1/futures/market-data`
-
 
 #### Request Parameters 
 

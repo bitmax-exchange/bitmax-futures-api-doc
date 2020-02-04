@@ -11,23 +11,26 @@
         "futuresAccount": [
             "fut1FfjKA3W1L7XZOipGKZNFBb34GRQ3"
         ],
-        "tradePermission":     True,
-        "transferPermission":  True,
-        "userUID":            "U0866943712",
-        "viewPermission":      True
+        "tradePermission": true,
+        "viewPermission":  true,
+        "userUID":         "U0866943712"
     }
 }
 ```
 
-**HTTP Request** 
+#### Permissions 
+
+This API doesn't need any permission to access.
+
+#### HTTP Request 
 
 `GET /api/pro/v1/info`
 
-**Signature**
+#### Signature
 
 You should sign the message in header as specified in [**Authenticate a RESTful Request**](#sign-a-Request) section.
 
-**prehash string** 
+#### Prehash String
 
 `<timestamp>+info`
 

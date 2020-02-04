@@ -133,15 +133,19 @@
 
 Place a new order.
 
-**HTTP Request**
+#### Permissions 
+
+You need trade permission to access this API.
+
+#### HTTP Request
 
 `POST <account-group>/api/pro/v1/futures/order`
 
-**Signature**
+#### Signature
 
 You should sign the message in header as specified in [**Authenticate a RESTful Request**](#sign-a-request) section.
 
-**Prehash String**
+#### Prehash String
 
 `<timestamp>+order`
 

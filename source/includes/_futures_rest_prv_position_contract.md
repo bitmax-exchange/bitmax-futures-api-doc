@@ -22,10 +22,13 @@
 }
 ```
 
+#### Permissions 
+
+You need view permission to access this API.
+
 #### HTTP Request
 
 `GET <account-group>/api/pro/futures/position`
-
 
 #### Signature
 

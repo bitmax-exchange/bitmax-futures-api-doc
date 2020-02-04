@@ -41,6 +41,9 @@
 
 Cancel an existing open order. 
 
+#### Permissions 
+
+You need trade permission to access this API.
 
 #### HTTP Request
 

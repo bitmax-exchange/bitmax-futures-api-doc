@@ -29,6 +29,9 @@
 
 You can obtain the status of the overall account from this API.
 
+#### Permissions 
+
+You need view permission to access this API.
 
 #### HTTP Request 
 

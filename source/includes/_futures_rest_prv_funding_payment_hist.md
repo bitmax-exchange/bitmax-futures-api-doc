@@ -8,25 +8,28 @@
   "data": {
     "data": [
       {
-        "fundingRate": "0.001",
+        "fundingRate":   "0.001",
         "paymentInUSDT": "26.800171872",
-        "symbol": "BTC-PERP",
-        "timestamp": 1580328000000
+        "symbol":        "BTC-PERP",
+        "timestamp":     1580328000000
       },
       {
-        "fundingRate": "-0.001",
+        "fundingRate":   "-0.001",
         "paymentInUSDT": "-26.740689873",
-        "symbol": "BTC-PERP",
-        "timestamp": 1580324400000
+        "symbol":        "BTC-PERP",
+        "timestamp":     1580324400000
       }
     ],
-    "hasNext": True,
-    "page": 1,
-    "pageSize": 2
+    "hasNext":  false,
+    "page":     1,
+    "pageSize": 20
   }
 }
 ```
 
+#### Permissions 
+
+You need view permission to access this API.
 
 #### HTTP Request
 

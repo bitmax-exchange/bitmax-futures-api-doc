@@ -6,6 +6,10 @@
 curl -X GET https://bitmax-test.io/api/pro/v1/futures/ref-px
 ```
 
+#### Permissions 
 
+This API is public. 
 
+#### HTTP Request
 
+`GET /api/pro/v1/futures/ref-px`

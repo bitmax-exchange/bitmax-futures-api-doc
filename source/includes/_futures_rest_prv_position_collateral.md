@@ -24,6 +24,9 @@
 }
 ```
 
+#### Permissions 
+
+You need view permission to access this API.
 
 #### HTTP Request
 

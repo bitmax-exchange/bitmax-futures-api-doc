@@ -30,10 +30,13 @@ You can get a list of assets eligible to be used as collateral with this API, al
 the total collateral value of your account. 
 
 
+#### Permissions 
+
+This API is public. 
+
 #### HTTP Request
 
 `GET /api/pro/v1/futures/collateral`
-
 
 #### Response Content
 

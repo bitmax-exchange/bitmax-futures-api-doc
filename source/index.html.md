@@ -36,6 +36,8 @@ includes:
 
   - futures_ws
   - futures_ws_keep_alive
+  - futures_ws_auth
+
   - futures_ws_sub
   - futures_ws_sub_bar
   - futures_ws_sub_level1
@@ -89,10 +91,6 @@ For instance, the symbol of the BTC perpetrual contract is `BTC-PERP`.
 ## Making REST API Calls
 
 The RESTful APIs will always respond with JSON objects. 
-
-
-
-
 
 
 ## Authenticate a RESTful Request 
@@ -188,6 +186,47 @@ To query APIs with private data, you must include a signature using base64 encod
 The `timestamp` is the UTC timestamp in milliseconds.  
 
 
-See the code demos in (`bash`/`python`/`java`) on the right.
+## API Permissions 
 
+You must specify permissions when setting up API keys. API permissions can never be changed. If you want different permissions, you would have
+to apply for new API keys. 
+
+There are three different permissions:
+
+* View 
+* Trade
+* Transfer
+
+### Permissions - Bird's-eye View
+
+#### RESTful APIs
+
+API                               |  Type   | View | Trade | Transfer | Mehod / URL
+--------------------------------- | ------- | ---- | ----- | -------- | ---------------------------------------- 
+Market Data                       | Public  |      |       |          | `GET /api/pro/v1/futures/market-data`
+Funding Rate History              | Public  |      |       |          | `GET /api/pro/v1/futures/funding-rates`
+Futures Contract Info             | Public  |      |       |          | `GET /api/pro/v1/futures/contracts`
+Futures Collateral Info           | Public  |      |       |          | `GET /api/pro/v1/futures/collateral`
+Reference Prices                  | Public  |      |       |          | `GET /api/pro/v1/futures/ref-px`
+Account Info                      | Private |      |       |          | `GET /api/pro/v1/info`
+Account Funding Payment History   | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/funding-payments`
+Account Contract Positions        | Private |  x   |       |          | `GET <account-group>/api/pro/futures/position`
+Futures Collateral Balances       | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/collateral-balance`
+Account Futures Risk Profile      | Private |  x   |       |          | `GET <account-group>/api/pro/futures/risk`
+Wallet Deposit/Withdrawal History | Private |  x   |       |          | `GET /api/pro/wallet/transactions`
+List Open Orders                  | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/order/open`
+Place New Order                   | Private |      |   x   |          | `POST <account-group>/api/pro/v1/futures/order`  
+Cancel Order                      | Private |      |   x   |          | `DELETE <account-group>/api/pro/v1/futures/order`
+
+
+#### WebSocket Requests
+
+API                          |  Type   | View | Trade | Transfer | Action
+---------------------------- | ------- | ---- | ----- | -------- | --------------------
+Authenticate Session         | Public  |      |   x   |          | `auth`
+Place New Order              | Private |      |   x   |          | `place-order`
+Cancel Order                 | Private |      |   x   |          | `cancel-order`
+Cancel All Orders            | Private |      |   x   |          | `cancel-all`
+Account Contract Positions   | Private |  x   |       |          | `futures-position`
+Account Futures Risk Profile | Private |  x   |       |          | `futures-risk`
 

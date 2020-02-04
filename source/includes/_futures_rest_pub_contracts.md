@@ -29,10 +29,13 @@ curl -X GET https://bitmax-test.io/api/pro/v1/futures/contracts
 }
 ```
 
+#### Permissions 
+
+This API is public. 
+
 #### HTTP Request
 
 `GET /api/pro/v1/futures/contracts`
-
 
 #### Response Content
 

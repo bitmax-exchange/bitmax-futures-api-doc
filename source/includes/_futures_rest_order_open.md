@@ -32,6 +32,10 @@
 
 This API returns all current open orders for the account specified. 
 
+#### Permissions 
+
+You need view permission to access this API.
+
 #### HTTP Request
 
 `GET <account-group>/api/pro/v1/futures/order/open`
