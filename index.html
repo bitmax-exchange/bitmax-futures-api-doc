@@ -251,6 +251,14 @@
                         </li>
                     </ul>
                   </li>
+                  <li>
+                    <a href="#api-permissions" class="toc-h2 toc-link" data-title="API Permissions">API Permissions</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#permissions-bird-39-s-eye-view" class="toc-h3 toc-link" data-title="Permissions - Bird's-eye View">Permissions - Bird's-eye View</a>
+                        </li>
+                    </ul>
+                  </li>
               </ul>
           </li>
           <li>
@@ -332,6 +340,20 @@
                         </li>
                         <li>
                           <a href="#keep-the-connection-alive-via-ping-pong" class="toc-h3 toc-link" data-title="Keep the Connection Alive via Ping/Pong">Keep the Connection Alive via Ping/Pong</a>
+                        </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#websocket-authentication" class="toc-h2 toc-link" data-title="WebSocket Authentication">WebSocket Authentication</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#method-1-websocket-authentication-with-request-headers" class="toc-h3 toc-link" data-title="Method 1 - WebSocket Authentication with Request Headers">Method 1 - WebSocket Authentication with Request Headers</a>
+                        </li>
+                        <li>
+                          <a href="#method-2-websocket-authentication-by-sending-the-auth-message" class="toc-h3 toc-link" data-title="Method 2 - WebSocket Authentication by Sending the Auth Message">Method 2 - WebSocket Authentication by Sending the Auth Message</a>
+                        </li>
+                        <li>
+                          <a href="#authentication-response" class="toc-h3 toc-link" data-title="Authentication Response">Authentication Response</a>
                         </li>
                     </ul>
                   </li>
@@ -501,8 +523,201 @@ curl -X GET -i <span class="se">\</span>
 </code></pre>
 <p>To query APIs with private data, you must include a signature using base64 encoded HMAC sha256 algorithm. The prehash string is <code>&lt;timestamp&gt;+&lt;api-path&gt;</code>. 
 The <code>timestamp</code> is the UTC timestamp in milliseconds.  </p>
+<h2 id='api-permissions'>API Permissions</h2>
+<p>You must specify permissions when setting up API keys. API permissions can never be changed. If you want different permissions, you would have
+to apply for new API keys. </p>
 
-<p>See the code demos in (<code>bash</code>/<code>python</code>/<code>java</code>) on the right.</p>
+<p>There are three different permissions:</p>
+
+<ul>
+<li>View </li>
+<li>Trade</li>
+<li>Transfer</li>
+</ul>
+<h3 id='permissions-bird-39-s-eye-view'>Permissions - Bird&#39;s-eye View</h3><h4 id='restful-apis'>RESTful APIs</h4>
+<table><thead>
+<tr>
+<th>API</th>
+<th>Type</th>
+<th>View</th>
+<th>Trade</th>
+<th>Transfer</th>
+<th>Mehod / URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Market Data</td>
+<td>Public</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/v1/futures/market-data</code></td>
+</tr>
+<tr>
+<td>Funding Rate History</td>
+<td>Public</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/v1/futures/funding-rates</code></td>
+</tr>
+<tr>
+<td>Futures Contract Info</td>
+<td>Public</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/v1/futures/contracts</code></td>
+</tr>
+<tr>
+<td>Futures Collateral Info</td>
+<td>Public</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/v1/futures/collateral</code></td>
+</tr>
+<tr>
+<td>Reference Prices</td>
+<td>Public</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/v1/futures/ref-px</code></td>
+</tr>
+<tr>
+<td>Account Info</td>
+<td>Private</td>
+<td></td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/v1/info</code></td>
+</tr>
+<tr>
+<td>Account Funding Payment History</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>GET &lt;account-group&gt;/api/pro/v1/futures/funding-payments</code></td>
+</tr>
+<tr>
+<td>Account Contract Positions</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>GET &lt;account-group&gt;/api/pro/futures/position</code></td>
+</tr>
+<tr>
+<td>Futures Collateral Balances</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>GET &lt;account-group&gt;/api/pro/v1/futures/collateral-balance</code></td>
+</tr>
+<tr>
+<td>Account Futures Risk Profile</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>GET &lt;account-group&gt;/api/pro/futures/risk</code></td>
+</tr>
+<tr>
+<td>Wallet Deposit/Withdrawal History</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>GET /api/pro/wallet/transactions</code></td>
+</tr>
+<tr>
+<td>List Open Orders</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>GET &lt;account-group&gt;/api/pro/v1/futures/order/open</code></td>
+</tr>
+<tr>
+<td>Place New Order</td>
+<td>Private</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td><code>POST &lt;account-group&gt;/api/pro/v1/futures/order</code></td>
+</tr>
+<tr>
+<td>Cancel Order</td>
+<td>Private</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td><code>DELETE &lt;account-group&gt;/api/pro/v1/futures/order</code></td>
+</tr>
+</tbody></table>
+<h4 id='websocket-requests'>WebSocket Requests</h4>
+<table><thead>
+<tr>
+<th>API</th>
+<th>Type</th>
+<th>View</th>
+<th>Trade</th>
+<th>Transfer</th>
+<th>Action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authenticate Session</td>
+<td>Public</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td><code>auth</code></td>
+</tr>
+<tr>
+<td>Place New Order</td>
+<td>Private</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td><code>place-order</code></td>
+</tr>
+<tr>
+<td>Cancel Order</td>
+<td>Private</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td><code>cancel-order</code></td>
+</tr>
+<tr>
+<td>Cancel All Orders</td>
+<td>Private</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td><code>cancel-all</code></td>
+</tr>
+<tr>
+<td>Account Contract Positions</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>futures-position</code></td>
+</tr>
+<tr>
+<td>Account Futures Risk Profile</td>
+<td>Private</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td><code>futures-risk</code></td>
+</tr>
+</tbody></table>
 <h1 id='rest-apis-futures'>REST APIs - Futures</h1><h2 id='market-data-public'>Market Data (Public)</h2>
 <p>Anyone can access public market data.  </p>
 <h3 id='futures-collateral-assets'>Futures Collateral Assets</h3>
@@ -532,6 +747,8 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds.  </p>
 </span></code></pre>
 <p>You can get a list of assets eligible to be used as collateral with this API, along with other information needed to calculate 
 the total collateral value of your account. </p>
+<h4 id='permissions'>Permissions</h4>
+<p>This API is public. </p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /api/pro/v1/futures/collateral</code></p>
 <h4 id='response-content'>Response Content</h4>
@@ -593,7 +810,9 @@ the adjusted USDT value of its all collateral assets. </p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='http-request'>HTTP Request</h4>
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>This API is public. </p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /api/pro/v1/futures/contracts</code></p>
 <h4 id='response-content'>Response Content</h4>
 <table><thead>
@@ -664,7 +883,11 @@ the adjusted USDT value of its all collateral assets. </p>
 <p>Reference Prices for Futures Collateral Assets </p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax-test.io/api/pro/v1/futures/ref-px
-</code></pre><h3 id='futures-market-data'>Futures Market Data</h3>
+</code></pre><h4 id='permissions'>Permissions</h4>
+<p>This API is public. </p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /api/pro/v1/futures/ref-px</code></p>
+<h3 id='futures-market-data'>Futures Market Data</h3>
 <blockquote>
 <p>Futures Market Data for one Contract</p>
 </blockquote>
@@ -712,7 +935,9 @@ curl -X GET https://bitmax-test.io/futures/market-data?symbol=BTC-PERP,
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='http-request'>HTTP Request</h4>
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>This API is public. </p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /api/pro/v1/futures/market-data</code></p>
 <h4 id='request-parameters'>Request Parameters</h4>
 <table><thead>
@@ -823,7 +1048,11 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='response-content'>Response Content</h4>
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>This API is public. </p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET /api/pro/v1/futures/funding-rates</code></p>
+<h4 id='response-content'>Response Content</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -859,23 +1088,18 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
         </span><span class="s2">"futuresAccount"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="s2">"fut1FfjKA3W1L7XZOipGKZNFBb34GRQ3"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"tradePermission"</span><span class="p">:</span><span class="w">     </span><span class="err">True</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"transferPermission"</span><span class="p">:</span><span class="w">  </span><span class="err">True</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userUID"</span><span class="p">:</span><span class="w">            </span><span class="s2">"U0866943712"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"viewPermission"</span><span class="p">:</span><span class="w">      </span><span class="err">True</span><span class="w">
+        </span><span class="s2">"tradePermission"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"viewPermission"</span><span class="p">:</span><span class="w">  </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userUID"</span><span class="p">:</span><span class="w">         </span><span class="s2">"U0866943712"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><strong>HTTP Request</strong> </p>
-
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>This API doesn&#39;t need any permission to access.</p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /api/pro/v1/info</code></p>
-
-<p><strong>Signature</strong></p>
-
+<h4 id='signature'>Signature</h4>
 <p>You should sign the message in header as specified in <a href="#sign-a-Request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
-
-<p><strong>prehash string</strong> </p>
-
+<h4 id='prehash-string'>Prehash String</h4>
 <p><code>&lt;timestamp&gt;+info</code></p>
 
 <p>Obtain the account information. </p>
@@ -950,7 +1174,9 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='http-request'>HTTP Request</h4>
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>You need view permission to access this API.</p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET &lt;account-group&gt;/api/pro/v1/futures/collateral-balance</code></p>
 <h4 id='signature'>Signature</h4>
 <p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
@@ -1020,7 +1246,9 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='http-request'>HTTP Request</h4>
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>You need view permission to access this API.</p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET &lt;account-group&gt;/api/pro/futures/position</code></p>
 <h4 id='signature'>Signature</h4>
 <p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
@@ -1122,6 +1350,8 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You can obtain the status of the overall account from this API.</p>
+<h4 id='permissions'>Permissions</h4>
+<p>You need view permission to access this API.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET &lt;account-group&gt;/api/pro/futures/risk</code></p>
 <h4 id='response-content'>Response Content</h4>
@@ -1226,24 +1456,26 @@ to you account. </p>
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"paymentInUSDT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26.800171872"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580328000000</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">        </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w">     </span><span class="mi">1580328000000</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w">   </span><span class="s2">"-0.001"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"paymentInUSDT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-26.740689873"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1580324400000</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">        </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w">     </span><span class="mi">1580324400000</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"hasNext"</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="s2">"hasNext"</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w">     </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='http-request'>HTTP Request</h4>
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>You need view permission to access this API.</p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET &lt;account-group&gt;/api/pro/v1/futures/funding-payments</code></p>
 <h4 id='signature'>Signature</h4>
 <p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
@@ -1345,11 +1577,13 @@ to you account. </p>
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"page"</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"hasNext"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w">
+    </span><span class="s2">"hasNext"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You can obtain history of wallet deposit/withdrawal transactions via this API.</p>
+<h4 id='permissions'>Permissions</h4>
+<p>You need view permission to access this API.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET /api/pro/wallet/transactions</code></p>
 
@@ -1626,17 +1860,13 @@ to you account. </p>
 
 </span></code></pre>
 <p>Place a new order.</p>
-
-<p><strong>HTTP Request</strong></p>
-
+<h4 id='permissions'>Permissions</h4>
+<p>You need trade permission to access this API.</p>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>POST &lt;account-group&gt;/api/pro/v1/futures/order</code></p>
-
-<p><strong>Signature</strong></p>
-
+<h4 id='signature'>Signature</h4>
 <p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
-
-<p><strong>Prehash String</strong></p>
-
+<h4 id='prehash-string'>Prehash String</h4>
 <p><code>&lt;timestamp&gt;+order</code></p>
 <h4 id='request-parameters'>Request Parameters</h4>
 <table><thead>
@@ -2042,6 +2272,8 @@ to you account. </p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Cancel an existing open order. </p>
+<h4 id='permissions'>Permissions</h4>
+<p>You need trade permission to access this API.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>DELETE &lt;account-group&gt;/api/pro/v1/futures/order</code></p>
 <h4 id='signature'>Signature</h4>
@@ -2126,6 +2358,8 @@ to you account. </p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This API returns all current open orders for the account specified. </p>
+<h4 id='permissions'>Permissions</h4>
+<p>You need view permission to access this API.</p>
 <h4 id='http-request'>HTTP Request</h4>
 <p><code>GET &lt;account-group&gt;/api/pro/v1/futures/order/open</code></p>
 <h4 id='signature'>Signature</h4>
@@ -2313,6 +2547,173 @@ for 30 seconds if a client initiated <code>ping</code> message is received. </p>
 <td><strong>hp</strong></td>
 <td><code>Int</code></td>
 <td>health point: when this value decreases to 0, the session will be disconnected.</td>
+</tr>
+</tbody></table>
+<h2 id='websocket-authentication'>WebSocket Authentication</h2>
+<p>You must authenticate the websocket session in order to recieve private data and send account specific requests 
+(e.g. placing new orders). </p>
+
+<p>You have two options to authenticate a websocket session. </p>
+
+<ul>
+<li>by adding authentication data in the request header when connecting to websocket. </li>
+<li>by sending an <code>op:auth</code> message to the server after you have connected to websocket. </li>
+</ul>
+
+<p>Once you successfully connect to the websocket, you will receive a <code>connected</code> message: </p>
+
+<ul>
+<li>for authenticated websocket session: <code>{&quot;op&quot;:&quot;connected&quot;,&quot;type&quot;:&quot;auth&quot;}</code></li>
+<li>for unauthenticated websocket session: <code>{&quot;op&quot;:&quot;connected&quot;,&quot;type&quot;:&quot;unauth&quot;}</code></li>
+</ul>
+
+<p>If the session is disconnected for some reason, you will receive a <code>disconnected</code> message:</p>
+
+<ul>
+<li><code>{&quot;m&quot;:&quot;disconnected&quot;,&quot;code&quot;:100005,&quot;reason&quot;:&quot;INVALID_WS_REQUEST_DATA&quot;,&quot;info&quot;:&quot;Session is disconnected due to missing pong message from the client&quot;}</code></li>
+</ul>
+<h3 id='method-1-websocket-authentication-with-request-headers'>Method 1 - WebSocket Authentication with Request Headers</h3>
+<blockquote>
+<p>Authenticate with Headers</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># # Install wscat from Node.js if you haven't</span>
+<span class="c"># npm install -g wscat  </span>
+
+<span class="nv">APIPATH</span><span class="o">=</span>stream
+<span class="nv">APIKEY</span><span class="o">=</span>BclE7dBGbS1AP3VnOuq6s8fJH0fWbH7r
+<span class="nv">SECRET</span><span class="o">=</span>fAZcQRUMxj3eX3DreIjFcPiJ9UR3ZTdgIw8mxddvtcDxLoXvdbXJuFQYadUUsF7q
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="sb">`</span>date +%s%N | cut -c -13<span class="sb">`</span>
+<span class="nv">MESSAGE</span><span class="o">=</span><span class="nv">$TIMESTAMP</span>+<span class="nv">$APIPATH</span>
+<span class="nv">SIGNATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -n <span class="nv">$MESSAGE</span> | openssl dgst -sha256 -hmac <span class="nv">$SECRET</span> -binary | base64<span class="sb">`</span>
+
+wscat -H <span class="s2">"x-auth-key: </span><span class="nv">$APIKEY</span><span class="s2">"</span> <span class="se">\</span>
+  -H <span class="s2">"x-auth-signature: </span><span class="nv">$SIGNATURE</span><span class="s2">"</span> <span class="se">\</span>
+  -H <span class="s2">"x-auth-timestamp: </span><span class="nv">$TIMESTAMP</span><span class="s2">"</span> <span class="se">\</span>
+  -c wss://bitmax.io/1/api/v1/t/stream -w 1 -x <span class="s1">'{"op":"sub", "id": "abc123", "ch": "order:futZtmicU8Ls03xldo112uxpICXulxXd"}'</span>
+</code></pre>
+<p>This is similar to the way you authenticate any RESTful request. You need to add the following header fields to the 
+connection request:</p>
+
+<ul>
+<li><code>x-auth-key</code></li>
+<li><code>x-auth-timestamp</code></li>
+<li><code>x-auth-signature</code></li>
+</ul>
+
+<p>The server will then check if the data is correctly signed before upgrading the connection protocol to WebSocket. </p>
+
+<p>Note that if you specify these header fields, the server will reject the websocket connection request if authentication fails. </p>
+<h3 id='method-2-websocket-authentication-by-sending-the-auth-message'>Method 2 - WebSocket Authentication by Sending the Auth Message</h3>
+<blockquote>
+<p>Authenticate by Sending the <code>auth</code> Message</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># # Install wscat from Node.js if you haven't</span>
+<span class="c"># npm install -g wscat  </span>
+
+<span class="nv">APIPATH</span><span class="o">=</span>stream
+<span class="nv">APIKEY</span><span class="o">=</span>BclE7dBGbS1AP3VnOuq6s8fJH0fWbH7r
+<span class="nv">SECRET</span><span class="o">=</span>fAZcQRUMxj3eX3DreIjFcPiJ9UR3ZTdgIw8mxddvtcDxLoXvdbXJuFQYadUUsF7q
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="sb">`</span>date +%s%N | cut -c -13<span class="sb">`</span>
+<span class="nv">MESSAGE</span><span class="o">=</span><span class="nv">$TIMESTAMP</span>+<span class="nv">$APIPATH</span>
+<span class="nv">SIGNATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -n <span class="nv">$MESSAGE</span> | openssl dgst -sha256 -hmac <span class="nv">$SECRET</span> -binary | base64<span class="sb">`</span>
+
+wscat -c wss://bitmax.io/1/api/pro/stream -w 1 -x <span class="s2">"{</span><span class="se">\"</span><span class="s2">op</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">auth</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">abc123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">t</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$TIMESTAMP</span><span class="s2">, "</span>key<span class="s2">": </span><span class="se">\"</span><span class="nv">$APIKEY</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">sig</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$SIGNATURE</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre>
+<p>You can also authenticate a live websocket session by sending an <code>op:auth</code> message to the server. </p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>op</strong></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td><code>&quot;auth&quot;</code></td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td><code>String</code></td>
+<td>No</td>
+<td>optional id field, you may safely skip it</td>
+</tr>
+<tr>
+<td><strong>t</strong></td>
+<td><code>Long</code></td>
+<td>Yes</td>
+<td>UTC timestamp in milliseconds, use this timestamp to generate signature</td>
+</tr>
+<tr>
+<td><strong>key</strong></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>your api key</td>
+</tr>
+<tr>
+<td><strong>sig</strong></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>the signature is generated by signing <code>&quot;&lt;timestamp&gt;+stream&quot;</code></td>
+</tr>
+</tbody></table>
+
+<p>More comprehensive examples can be found at:</p>
+
+<ul>
+<li>Python for <a href="https://github.com/bitmax-exchange/bitmax-pro-api-demo/blob/master/python/websocket_auth.py">websocket auth</a></li>
+</ul>
+<h3 id='authentication-response'>Authentication Response</h3>
+<blockquote>
+<p>Auth success message</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Auth error message</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"m"</span><span class="p">:</span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200006</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unable to find User Account Data"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You will receive a message for authentication result after you send authentication request.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>m</strong></td>
+<td><code>String</code></td>
+<td><code>&quot;auth&quot;</code></td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td><code>String</code></td>
+<td>echo back the id if you provide one in the request</td>
+</tr>
+<tr>
+<td><strong>code</strong></td>
+<td><code>Long</code></td>
+<td>Any code other than 0 indicate an error in authentication</td>
+</tr>
+<tr>
+<td><strong>err</strong></td>
+<td><code>Optional[String]</code></td>
+<td>Provide detailed error message if code is not 0</td>
 </tr>
 </tbody></table>
 <h2 id='subscribe-to-data-channels'>Subscribe to Data Channels</h2><h3 id='how-to-subscribe'>How to Subscribe</h3>
@@ -3605,7 +4006,7 @@ the timely order book data. </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel-All"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel-all"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3614,7 +4015,7 @@ the timely order book data. </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel-All"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel-all"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futures"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="w">
@@ -3640,13 +4041,9 @@ the timely order book data. </p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Cancel all open orders on account level via websocket with optional symbol.</p>
-
-<p><strong>Request</strong></p>
-
+<h4 id='request'>Request</h4>
 <p>Make general websocket request with <code>action</code> field as <code>cancel-All</code> and set proper <code>account</code> value (<code>futures</code>), and provide <em>time</em> value in <em>args</em>.</p>
-
-<p><strong>Response</strong></p>
-
+<h4 id='response'>Response</h4>
 <p>With <em>status</em> field as <em>Ack</em> to indicate this cancel all order request has been received by server and sent to matching engine. </p>
 
 <p><em>info</em> field provide some detail: if you provide <em>id</em> in your request, it will be echoed back as <em>id</em> to help you match ack with request.</p>
