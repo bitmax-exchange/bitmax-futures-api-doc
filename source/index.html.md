@@ -27,6 +27,8 @@ includes:
   - futures_rest_prv_position_risk
   - futures_rest_prv_funding_payment_hist
   - futures_rest_prv_wallet_transactions
+  - futures_rest_prv_transfer_deposit
+  - futures_rest_prv_transfer_withdrawal
 
   - futures_rest_order
   - futures_rest_order_new
@@ -201,22 +203,24 @@ There are three different permissions:
 
 #### RESTful APIs
 
-API                               |  Type   | View | Trade | Transfer | Method / URL
---------------------------------- | ------- | :--: | :---: | :------: | ---------------------------------------- 
-Market Data                       | Public  |      |       |          | `GET /api/pro/v1/futures/market-data`
-Funding Rate History              | Public  |      |       |          | `GET /api/pro/v1/futures/funding-rates`
-Futures Contract Info             | Public  |      |       |          | `GET /api/pro/v1/futures/contracts`
-Futures Collateral Info           | Public  |      |       |          | `GET /api/pro/v1/futures/collateral`
-Reference Prices                  | Public  |      |       |          | `GET /api/pro/v1/futures/ref-px`
-Account Info                      | Private |      |       |          | `GET /api/pro/v1/info`
-Account Funding Payment History   | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/funding-payments`
-Account Contract Positions        | Private |  x   |       |          | `GET <account-group>/api/pro/futures/position`
-Futures Collateral Balances       | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/collateral-balance`
-Account Futures Risk Profile      | Private |  x   |       |          | `GET <account-group>/api/pro/futures/risk`
-Wallet Deposit/Withdrawal History | Private |  x   |       |          | `GET /api/pro/wallet/transactions`
-List Open Orders                  | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/order/open`
-Place New Order                   | Private |      |   x   |          | `POST <account-group>/api/pro/v1/futures/order`  
-Cancel Order                      | Private |      |   x   |          | `DELETE <account-group>/api/pro/v1/futures/order`
+API                                 |  Type   | View | Trade | Transfer | Method / URL
+----------------------------------- | ------- | :--: | :---: | :------: | ---------------------------------------- 
+Market Data                         | Public  |      |       |          | `GET /api/pro/v1/futures/market-data`
+Funding Rate History                | Public  |      |       |          | `GET /api/pro/v1/futures/funding-rates`
+Futures Contract Info               | Public  |      |       |          | `GET /api/pro/v1/futures/contracts`
+Futures Collateral Info             | Public  |      |       |          | `GET /api/pro/v1/futures/collateral`
+Reference Prices                    | Public  |      |       |          | `GET /api/pro/v1/futures/ref-px`
+Account Info                        | Private |      |       |          | `GET /api/pro/v1/info`
+Account Funding Payment History     | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/funding-payments`
+Account Contract Positions          | Private |  x   |       |          | `GET <account-group>/api/pro/futures/position`
+Futures Collateral Balances         | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/collateral-balance`
+Account Futures Risk Profile        | Private |  x   |       |          | `GET <account-group>/api/pro/futures/risk`
+Wallet Deposit/Withdrawal History   | Private |  x   |       |          | `GET /api/pro/wallet/transactions`
+List Open Orders                    | Private |  x   |       |          | `GET <account-group>/api/pro/v1/futures/order/open`
+Place New Order                     | Private |      |   x   |          | `POST <account-group>/api/pro/v1/futures/order`  
+Cancel Order                        | Private |      |   x   |          | `DELETE <account-group>/api/pro/v1/futures/order`
+Transfer Funds from Cash to Futures | Private |      |       |    x     | `POST /<account-group>/api/pro/v1/futures/transfer/deposit`
+Transfer Funds from Futures to Cash | Private |      |       |    x     | `POST /<account-group>/api/pro/v1/futures/transfer/withdraw`
 
 
 #### WebSocket Requests
