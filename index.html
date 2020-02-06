@@ -305,6 +305,12 @@
                         <li>
                           <a href="#wallet-transaction-history" class="toc-h3 toc-link" data-title="Wallet Transaction History">Wallet Transaction History</a>
                         </li>
+                        <li>
+                          <a href="#transfer-fund-from-cash-to-futures-account" class="toc-h3 toc-link" data-title="Transfer Fund from Cash to Futures Account">Transfer Fund from Cash to Futures Account</a>
+                        </li>
+                        <li>
+                          <a href="#transfer-fund-from-futures-to-cash-account" class="toc-h3 toc-link" data-title="Transfer Fund from Futures to Cash Account">Transfer Fund from Futures to Cash Account</a>
+                        </li>
                     </ul>
                   </li>
                   <li>
@@ -656,6 +662,22 @@ to apply for new API keys. </p>
 <td style="text-align: center">x</td>
 <td style="text-align: center"></td>
 <td><code>DELETE &lt;account-group&gt;/api/pro/v1/futures/order</code></td>
+</tr>
+<tr>
+<td>Transfer Funds from Cash to Futures</td>
+<td>Private</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">x</td>
+<td><code>POST /&lt;account-group&gt;/api/pro/v1/futures/transfer/deposit</code></td>
+</tr>
+<tr>
+<td>Transfer Funds from Futures to Cash</td>
+<td>Private</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">x</td>
+<td><code>POST /&lt;account-group&gt;/api/pro/v1/futures/transfer/withdraw</code></td>
 </tr>
 </tbody></table>
 <h4 id='websocket-requests'>WebSocket Requests</h4>
@@ -1733,6 +1755,118 @@ to you account. </p>
 <td>deposit / withdrawal</td>
 </tr>
 </tbody></table>
+<h3 id='transfer-fund-from-cash-to-futures-account'>Transfer Fund from Cash to Futures Account</h3>
+<blockquote>
+<p>Request Body - Transfer Fund from Cash to Futures Account</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample response if the transfer was successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample response if the transfer failed </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">300011</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Enough Account Balance"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_BALANCE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>You need transfer permission to access this API.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>POST /&lt;account-group&gt;/api/pro/v1/futures/transfer/deposit</code></p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+futures/transfer/deposit</code></p>
+<h4 id='http-request-body'>HTTP Request Body</h4>
+<p>The request body must be a JSON string with the following fields:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>asset</strong></td>
+<td><code>String</code></td>
+<td>asset to transfer</td>
+</tr>
+<tr>
+<td><strong>amount</strong></td>
+<td><code>String</code></td>
+<td>amount to transfer</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<p>If the transfer request succeeded, the API will respond with a simple object with <code>code=0</code>. If the transfer request failed, the API 
+will respond with code other than 0 along with an error message.</p>
+<h3 id='transfer-fund-from-futures-to-cash-account'>Transfer Fund from Futures to Cash Account</h3>
+<blockquote>
+<p>Request Body - Transfer Fund from Futures to Cash Account</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample response if the transfer was successful</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample response if the transfer failed </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">300011</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Enough Account Balance"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_BALANCE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='permissions'>Permissions</h4>
+<p>You need transfer permission to access this API.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>POST /&lt;account-group&gt;/api/pro/v1/futures/transfer/withdraw</code></p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+futures/transfer/withdraw</code></p>
+<h4 id='http-request-body'>HTTP Request Body</h4>
+<p>The request body must be a JSON string with the following fields:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>asset</strong></td>
+<td><code>String</code></td>
+<td>asset to transfer</td>
+</tr>
+<tr>
+<td><strong>amount</strong></td>
+<td><code>String</code></td>
+<td>amount to transfer</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<p>If the transfer request succeeded, the API will respond with a simple object with <code>code=0</code>. If the transfer request failed, the API 
+will respond with code other than 0 along with an error message.</p>
 <h2 id='order'>Order</h2><h3 id='place-an-order'>Place an Order</h3>
 <blockquote>
 <p>Place Order - Successful ACK Response (Status 200, code 0)</p>
