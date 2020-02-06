@@ -1,4 +1,4 @@
-### Transfer Fund from Cash to Futures Account
+### From Cash to Futures Account
 
 > Request Body - Transfer Fund from Cash to Futures Account
 
