@@ -1,8 +1,9 @@
-### Transfer Fund from Futures to Cash Account
+### From Futures to Cash Account
 
 > Request Body - Transfer Fund from Futures to Cash Account
 
 ```json
+// URL https://bitmax-test.io/0/api/pro/v1/futures/transfer/withdraw
 {
     "asset": "ETH",
     "amount": "1"
