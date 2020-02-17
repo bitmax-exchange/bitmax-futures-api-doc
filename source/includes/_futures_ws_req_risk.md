@@ -40,7 +40,7 @@
 }
 ```
 
-You can request margin risk for a symbol via websocket by an `margin-risk` request. 
+You can request margin risk for a symbol via websocket by an `futures-risk` request. 
 
 The `args` schema:
 
