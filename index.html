@@ -274,6 +274,18 @@
                           <a href="#futures-contracts" class="toc-h3 toc-link" data-title="Futures Contracts">Futures Contracts</a>
                         </li>
                         <li>
+                          <a href="#bar-info" class="toc-h3 toc-link" data-title="Bar Info">Bar Info</a>
+                        </li>
+                        <li>
+                          <a href="#historical-bar-data" class="toc-h3 toc-link" data-title="Historical Bar Data">Historical Bar Data</a>
+                        </li>
+                        <li>
+                          <a href="#ticker" class="toc-h3 toc-link" data-title="Ticker">Ticker</a>
+                        </li>
+                        <li>
+                          <a href="#market-trades" class="toc-h3 toc-link" data-title="Market Trades">Market Trades</a>
+                        </li>
+                        <li>
                           <a href="#reference-prices" class="toc-h3 toc-link" data-title="Reference Prices">Reference Prices</a>
                         </li>
                         <li>
@@ -332,6 +344,9 @@
                         </li>
                         <li>
                           <a href="#historical-orders" class="toc-h3 toc-link" data-title="Historical Orders">Historical Orders</a>
+                        </li>
+                        <li>
+                          <a href="#list-current-history-orders" class="toc-h3 toc-link" data-title="List Current History Orders">List Current History Orders</a>
                         </li>
                     </ul>
                   </li>
@@ -905,6 +920,503 @@ the adjusted USDT value of its all collateral assets. </p>
 <td>When status code is not <code>Normal</code>, this message will contain the reason.</td>
 </tr>
 </tbody></table>
+<h3 id='bar-info'>Bar Info</h3>
+<blockquote>
+<p>Request </p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -X GET https://bitmax.io/pro/v1/barhist/info
+</code></pre>
+<blockquote>
+<p>Sample response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">300000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">900000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">3600000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"120"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">7200000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"240"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">14400000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"360"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">21600000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"720"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">43200000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1d"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1w"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">604800000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1m"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervalInMillis"</span><span class="p">:</span><span class="w"> </span><span class="mi">2592000000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Request</strong></p>
+
+<p><code>GET /api/pro/v1/barhist/info</code></p>
+
+<p>This API returns a list of all bar intervals supported by the server. </p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<p>This API endpoint does not take any parameters. </p>
+<h4 id='resposne'>Resposne</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>String</code></td>
+<td>name of the interval</td>
+</tr>
+<tr>
+<td><code>intervalInMillis</code></td>
+<td><code>Long</code></td>
+<td>length of the interval</td>
+</tr>
+</tbody></table>
+
+<p>Plesae note that the one-month bar (<code>1m</code>) always resets at the month start. The <code>intervalInMillis</code> value for the one-month <code>bar</code> is only indicative. </p>
+
+<p>The value in the <code>name</code> field should be your input to the <a href="#historical-bar-data">Historical Bar Data</a> API.</p>
+<h3 id='historical-bar-data'>Historical Bar Data</h3>
+<blockquote>
+<p>Request </p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -X GET https://bitmax.io/api/pro/v1/barhist?symbol=BTC-PERP&amp;interval=1
+</code></pre>
+<blockquote>
+<p>Sample response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"i"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1581981600000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"i"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1581981660000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Request</strong></p>
+
+<p><code>GET /api/pro/v1/barhist</code></p>
+
+<p>This API returns a list of <strong>bar</strong>s, with each contains the open/close/high/low prices of a symbol for a specific time range. </p>
+<h4 id='request-parameters-2'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>symbol</strong></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td>Contract Symbol</td>
+<td>e.g. <code>&quot;BTC-PERP&quot;</code></td>
+</tr>
+<tr>
+<td><strong>interval</strong></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td></td>
+<td>a string representing the interval type.</td>
+</tr>
+<tr>
+<td><strong>to</strong></td>
+<td><code>Long</code></td>
+<td>No</td>
+<td>Timestamp</td>
+<td>UTC timestamp in milliseconds. If not provided, this field will be set to the current time.</td>
+</tr>
+<tr>
+<td><strong>from</strong></td>
+<td><code>Long</code></td>
+<td>No</td>
+<td>Timestamp</td>
+<td>UTC timestamp in milliseconds.</td>
+</tr>
+<tr>
+<td><strong>n</strong></td>
+<td><code>Int</code></td>
+<td>No</td>
+<td>&gt; 0</td>
+<td>default 10, number of bars to be returned, this number will be capped at 500</td>
+</tr>
+</tbody></table>
+
+<p>The requested time range is determined by three parameters - <code>to</code>, <code>from</code>, and <code>n</code> - according to rules below:</p>
+
+<ul>
+<li><code>from</code>/<code>to</code> each specifies the start timestamp of the first/last bar. </li>
+<li><code>to</code> is always honored. If not provided, this field will be set to the current system time. </li>
+<li>For <code>from</code> and <code>to</code>: 
+
+<ul>
+<li>if only <code>from</code> is provided, then the request range is determined by <code>[from, to]</code>, inclusive. However, if the range is too wide,
+the server will increase <code>from</code> so the number of bars in the response won&#39;t exceed 500. </li>
+<li>if only <code>n</code> is provided, then the server will return the most recent <code>n</code> data bars to time <code>to</code>. However, if <code>n</code> is greater than 500, 
+only 500 bars will be returned. </li>
+<li>if both <code>from</code> and <code>n</code> are specified, the server will pick one that returns fewer bars. </li>
+</ul></li>
+</ul>
+<h4 id='response'>Response</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>m</strong></td>
+<td>String</td>
+<td>message type</td>
+<td><code>&quot;bar&quot;</code></td>
+</tr>
+<tr>
+<td><strong>s</strong></td>
+<td>String</td>
+<td>symbol</td>
+<td><code>&quot;BTC-PERP&quot;</code></td>
+</tr>
+<tr>
+<td><strong>data:ts</strong></td>
+<td>Long</td>
+<td>bar start time in milliseconds</td>
+<td><code>1581981660000</code></td>
+</tr>
+<tr>
+<td><strong>data:i</strong></td>
+<td>String</td>
+<td>interval</td>
+<td><code>&quot;1&quot;</code></td>
+</tr>
+<tr>
+<td><strong>data:o</strong></td>
+<td>String</td>
+<td>open price</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>data:c</strong></td>
+<td>String</td>
+<td>close price</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>data:h</strong></td>
+<td>String</td>
+<td>high price</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>data:l</strong></td>
+<td>String</td>
+<td>low price</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>data:v</strong></td>
+<td>String</td>
+<td>volume in quote asset</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>Please refer python code to [get bar history]{https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/query-bar-hist.py}</p>
+<h3 id='ticker'>Ticker</h3>
+<blockquote>
+<p>Ticker for one product</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">'https</span><span class="p">:</span><span class="err">//bfutures.io/api/pro/v</span><span class="mi">1</span><span class="err">/ticker?symbol=BTC-PERP'</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"11000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.0004"</span><span class="w"> </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"9600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.012"</span><span class="w"> </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="s2">"11000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="s2">"11000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="s2">"9692.75"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="s2">"9745"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0152"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>List of Tickers for one or multiple products</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="s2">"https://bfutures.io/api/pro/v1/ticker?symbol=BTC-PERP,"</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"11000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.0004"</span><span class="w"> </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"9600"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.012"</span><span class="w"> </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w">  </span><span class="s2">"11000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w">   </span><span class="s2">"11000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w">    </span><span class="s2">"9692.75"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w">   </span><span class="s2">"9745"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0152"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Request</strong></p>
+
+<p><code>GET api/pro/v1/ticker</code></p>
+
+<p>You can get summary statistics of one or multiple symbols with this API. </p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td>No</td>
+<td></td>
+<td>you may specify one, multiple, or all symbols of interest. See below.</td>
+</tr>
+</tbody></table>
+
+<p>This API endpoint accepts one optional string field <code>symbol</code>: </p>
+
+<ul>
+<li>If you do not specify <code>symbol</code>, the API will responde with tickers of all symbols in a list. </li>
+<li>If you set <code>symbol</code> to be a single symbol, such as <code>BTC-PERP</code>, the API will respond with the ticker of the target symbol as an object. 
+If you want to wrap the object in a one-element list, append a comma to the symbol, e.g. <code>BTC-PERP,</code>.</li>
+<li>(Not supported yet) You shall specify <code>symbol</code> as a comma separated symbol list, e.g. <code>BTC-PERP,ETH-PERP</code>. The API will respond with a list of tickers. </li>
+</ul>
+<h4 id='respond-content'>Respond Content</h4>
+<p>The API will respond with a ticker object or a list of ticker objects, depending on how you set the <code>symbol</code> parameter. </p>
+
+<p>Each ticker object contains the following fields:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td><code>String</code></td>
+<td>the traded price 24 hour ago</td>
+</tr>
+<tr>
+<td><code>close</code></td>
+<td><code>String</code></td>
+<td>the last traded price</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td><code>String</code></td>
+<td>the highest price over the past 24 hours</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td><code>String</code></td>
+<td>the lowest price over the past 24 hours</td>
+</tr>
+<tr>
+<td><code>volume</code></td>
+<td><code>String</code></td>
+<td>the total traded volume in quote asset over the paste 24 hours</td>
+</tr>
+<tr>
+<td><code>ask</code></td>
+<td><code>[String, String]</code></td>
+<td>the price and size at the current best ask level</td>
+</tr>
+<tr>
+<td><code>bid</code></td>
+<td><code>[String, String]</code></td>
+<td>the price and size at the current best bid level</td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>Please refer to python code to [query ticker info]{https://github.com/bithumbfutures/bithumb-futures-api-demo/blob/master/python/query-ticker.py}</p>
+<h3 id='market-trades'>Market Trades</h3>
+<blockquote>
+<p>Request </p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -X GET /api/pro/v1/trades?symbol=BTC-PERP
+</code></pre>
+<blockquote>
+<p>Sample response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"bm"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9800"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0006"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seqnum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180143985094828828</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1581955026966</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bm"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9700"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00310"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seqnum"</span><span class="p">:</span><span class="w"> </span><span class="mi">180143985094828975</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1581957024856</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Request</strong></p>
+
+<p><code>GET /api/pro/v1/trades</code></p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>symbol</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>Valid symbol supported by exchange</td>
+<td></td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>Int</td>
+<td>No</td>
+<td>any positive integer, capped at 100</td>
+<td>number of trades to return.</td>
+</tr>
+</tbody></table>
+<h4 id='response-content'>Response Content</h4>
+<p><code>data</code> field in response contains trade data and meta info.</p>
+
+<p>Name     | Type     | Description
+<code>m</code>      | <code>String</code> | <code>trades</code>
+<code>symbol</code> | <code>String</code> | trade symbol
+<code>data</code>   | <code>Json</code>   | A list of trade record; see below for detail.</p>
+
+<p>Trade record information in <code>data</code>:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>seqnum</code></td>
+<td><code>Long</code></td>
+<td>the sequence number of the trade record. <code>seqnum</code> is always increasing for each symbol, but may not be consecutive</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td><code>String</code></td>
+<td>trade price in string format</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td><code>String</code></td>
+<td>trade size in string format</td>
+</tr>
+<tr>
+<td><code>ts</code></td>
+<td><code>Long</code></td>
+<td>UTC timestamp in milliseconds</td>
+</tr>
+<tr>
+<td><code>bm</code></td>
+<td><code>Boolean</code></td>
+<td>If true, the maker of the trade is the buyer.</td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>Please refer to python code to [query trades]{https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/query-trades.py}</p>
 <h3 id='reference-prices'>Reference Prices</h3>
 <blockquote>
 <p>Reference Prices for Futures Collateral Assets </p>
@@ -2606,7 +3118,77 @@ will respond with code other than 0 along with an error message.</p>
 <ul>
 <li><code>errorCode</code> is no longer included in the open order response. It is still included in the historical order query response.</li>
 </ul>
-<h3 id='historical-orders'>Historical Orders</h3><h1 id='websocket'>WebSocket</h1><h2 id='guidelines'>Guidelines</h2><h3 id='general-message-request-handling-logic-from-client-side'>General Message Request/Handling Logic from Client Side</h3>
+<h3 id='historical-orders'>Historical Orders</h3><h3 id='list-current-history-orders'>List Current History Orders</h3>
+<blockquote>
+<p>Current History Orders - Successful Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w">         </span><span class="mi">8159713</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">        </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w">          </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w">         </span><span class="s2">"7967.62"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderQty"</span><span class="p">:</span><span class="w">      </span><span class="s2">"0.0083"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avgPx"</span><span class="p">:</span><span class="w">         </span><span class="s2">"7243.34"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumFee"</span><span class="p">:</span><span class="w">        </span><span class="s2">"0.051101764"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumFilledQty"</span><span class="p">:</span><span class="w">  </span><span class="s2">"0.0083"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w">      </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeAsset"</span><span class="p">:</span><span class="w">      </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastExecTime"</span><span class="p">:</span><span class="w">   </span><span class="mi">1576019215402</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w">       </span><span class="s2">"s16ef210b1a50866943712bfaf1584b"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w">     </span><span class="s2">"Market"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w">        </span><span class="s2">"Filled"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stopPrice"</span><span class="p">:</span><span class="w">      </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"execInst"</span><span class="p">:</span><span class="w">      </span><span class="s2">"NULL_VAL"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API returns all current history orders for the account specified. This API will only respond with most recently closed orders cached by the server. 
+To query the full history, please use the <a href="#historical-orders"><strong>Historical Orders</strong></a> API. </p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET &lt;account-group&gt;/api/pro/v1/{account-category}/order/hist/current</code></p>
+
+<p>Set <code>account-category</code> to<code>cash</code> for cash account and <code>margin</code> for margin account. </p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+order/hist/current</code></p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>n</code></td>
+<td><code>Int</code></td>
+<td>No</td>
+<td>maximum number of orders to be included in the response</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td>No</td>
+<td>symbol filter, e.g. <code>&quot;BTMX/USDT&quot;</code></td>
+</tr>
+<tr>
+<td><code>executedOnly</code></td>
+<td><code>Boolean</code></td>
+<td>No</td>
+<td>if <code>True</code>, include orders with non-zero filled quantities only.</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<p>Return a list of history orders in <em>&quot;data&quot;</em> field.</p>
+<h1 id='websocket'>WebSocket</h1><h2 id='guidelines'>Guidelines</h2><h3 id='general-message-request-handling-logic-from-client-side'>General Message Request/Handling Logic from Client Side</h3>
 <ul>
 <li>Client usually initiate request with <code>op</code> parameter (followed by other required parameters).</li>
 <li>Server usually reply message with <code>m</code> value to indicate message topic, e.g., <code>order</code>, <code>depth</code>, <code>auth</code>.</li>
