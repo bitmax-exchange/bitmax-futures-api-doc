@@ -340,6 +340,12 @@
                           <a href="#cancel-an-order" class="toc-h3 toc-link" data-title="Cancel an Order">Cancel an Order</a>
                         </li>
                         <li>
+                          <a href="#place-batch-orders" class="toc-h3 toc-link" data-title="Place Batch Orders">Place Batch Orders</a>
+                        </li>
+                        <li>
+                          <a href="#cancel-batch-orders" class="toc-h3 toc-link" data-title="Cancel Batch Orders">Cancel Batch Orders</a>
+                        </li>
+                        <li>
                           <a href="#list-open-orders" class="toc-h3 toc-link" data-title="List Open Orders">List Open Orders</a>
                         </li>
                         <li>
@@ -2980,6 +2986,541 @@ will respond with code other than 0 along with an error message.</p>
 <p><em>ERR</em></p>
 
 <p>Response with status &quot;Err&quot; to indicate there is something wrong with the cancel order request. We echo back the <em>coid</em> field in your request.</p>
+<h3 id='place-batch-orders'>Place Batch Orders</h3>
+<blockquote>
+<p>Place Batch Orders - Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w">         </span><span class="p">:</span><span class="w"> </span><span class="s2">"ygpBSzn1ZKOGDQqwhwi9Jo0QWhMJIi4e"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderPrice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderQty"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="mi">1582140876351</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w">         </span><span class="p">:</span><span class="w"> </span><span class="s2">"FhvyPfmwUZjS4qFfPeABbgAnHmaUnphA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderPrice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderQty"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="mi">1582140876351</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Place Batch Orders - Successful ACK Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"batch-place-order"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="s2">"ygpBSzn1ZKOGDQqwhwi9Jo0QWhMJIi4e"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderId"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"a1705ef9d2a25362614103sdUuPlzMW"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582141396352</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="s2">"FhvyPfmwUZjS4qFfPeABbgAnHmaUnphA"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderId"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"a1705ef9d2a25362614103Pf0MooywV"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582141396361</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ack"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Place Batch Orders - Error Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"batch-place-order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">300013</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="mi">300013</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="s2">"ygpBSzn1ZKOGDQqwhwi9Jo0QWhMJIi4e"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some invalid order in this batch."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_BATCH_ORDER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="mi">300001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="s2">"FhvyPfmwUZjS4qFfPeABbgAnHmaUnphA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price is too low from market price."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_PRICE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batch Order failed, please check each order info for detail."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_BATCH_ORDER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Err"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Place multiple orders in a batch. If some order in the batch failed our basic check, then the whole batch request fail.</p>
+
+<p>You may submit up to 10 orders at a time. Server will respond with error if you submit more than 10 orders.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>POST &lt;account-group&gt;/api/pro/v1/{account-category}/order/batch</code></p>
+
+<p>Set <code>account-category</code> to<code>cash</code> for cash account and <code>margin</code> for margin account.</p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+order/batch</code></p>
+<h4 id='response'>Response</h4>
+<p><em>ACK</em></p>
+
+<p>0 for <code>code</code> and status <code>Ack</code> to indicate the batch order request is accepted by server. Field &quot;info&quot; includes server generated &quot;order id&quot; for each order in the batch request, and this is the id you should use for future status query.</p>
+
+<p><code>data</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ac</code></td>
+<td><code>String</code></td>
+<td><code>FUTURES</code></td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>String</code></td>
+<td>account Id</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td><code>String</code></td>
+<td><code>batch-place-order</code></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td><code>Ack</code></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>List</code></td>
+<td>See below for detail</td>
+</tr>
+</tbody></table>
+
+<p><code>info</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>String</code></td>
+<td>echo back the <code>id</code> in request</td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>String</code></td>
+<td>server assigned order Id for this single order</td>
+</tr>
+<tr>
+<td><code>orderType</code></td>
+<td><code>String</code></td>
+<td>order type</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td><code>symbol</code> in request</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>Long</code></td>
+<td>server received timestamp</td>
+</tr>
+</tbody></table>
+
+<p><em>ERR</em></p>
+
+<p>Non 0 <code>code</code> and status <code>ERR</code> to indicate the batch order request is accepted by server. Field <code>info</code> includes detailed order information to explain why the batch request fail for each individual order. &quot;order id&quot; is original order id provided by user for each order.</p>
+
+<p>Error schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>Long</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ac</code></td>
+<td><code>String</code></td>
+<td><code>FUTURES</code></td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>String</code></td>
+<td>account Id</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td><code>String</code></td>
+<td><code>batch-place-order</code></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>error message detail</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>String</code></td>
+<td>short error message</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td><code>Err</code></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>List</code></td>
+<td>See below for detail</td>
+</tr>
+</tbody></table>
+
+<p><code>info</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>Long</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>String</code></td>
+<td>echo <code>id</code> in request</td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>String</code></td>
+<td>empty</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>error message detail</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>String</code></td>
+<td>short error message</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td>symbol in order</td>
+</tr>
+</tbody></table>
+
+<p><strong>Code Sample</strong></p>
+
+<p>Please refer to python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/place-batch-orders.py">place batch order</a></p>
+<h3 id='cancel-batch-orders'>Cancel Batch Orders</h3>
+<blockquote>
+<p>Cancel Batch Orders - Request Body</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a1705f147f715362614103eMn3z3tpi"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582143186943</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a1705f147f715362614103tKdqi2kfP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582143186943</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Cancel Batch Orders - Successful ACK Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"batch-cancel-order"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ack"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w">        </span><span class="s2">"0a8bXHbAwwoqDo3b485d7ea0b09c2cd8"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w">   </span><span class="s2">"16e61d5ff43s8bXHbAwwoqDo9d817339"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NULL_VAL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">    </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w">  </span><span class="mi">1573619097746</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w">        </span><span class="s2">"0a8bXHbAwwoqDo7d303e2edf6c26d1be"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w">   </span><span class="s2">"16e61adeee5a8bXHbAwwoqDo100e364e"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NULL_VAL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">    </span><span class="s2">"ETH/USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w">  </span><span class="mi">1573619098342</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Cancel Batch Orders - Error Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">300013</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"batch-place-order"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batch Order failed, please check each order info for detail."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_BATCH_ORDER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Err"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w">     </span><span class="mi">300006</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w">      </span><span class="s2">"NUty15oXcNt9JAngZ1D6q6jY15LOpKPC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16e61d5ff43s8bXHbAwwoqDo9d817339"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The order is already filled or canceled."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="w">  </span><span class="s2">"INVALID_ORDER_ID"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">   </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w">     </span><span class="mi">300006</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w">      </span><span class="s2">"mpoL0q8cheL8PL2UstJFRzp6yuPk1sGc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16e61adeee5a8bXHbAwwoqDo100e364e"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The order is already filled or canceled."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="w">  </span><span class="s2">"INVALID_ORDER_ID"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">   </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Cancel multiple orders in a batch. If some order in the batch failed our basic check, then the whole batch request failed.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>DELETE &lt;account-group&gt;/api/pro/v1/futures/order/batch</code></p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+order/batch</code></p>
+<h4 id='response'>Response</h4>
+<p><em>ACK</em></p>
+
+<p>Response with <code>code</code> as 0 to indicate batch is successfuly received by server and pass some basic check. <code>data</code> field explains order ack detail. 
+Order detail for each order is in <code>info</code> field list.</p>
+
+<p><code>data</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ac</code></td>
+<td><code>String</code></td>
+<td><code>CASH</code>, <code>MARGIN</code></td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>String</code></td>
+<td>account Id</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td><code>String</code></td>
+<td><code>cancel-all</code></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td><code>Ack</code></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>List</code></td>
+<td>See below for detail</td>
+</tr>
+</tbody></table>
+
+<p><code>info</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>String</code></td>
+<td>echo back the <code>id</code> in request</td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>String</code></td>
+<td>orderId in request to cancel</td>
+</tr>
+<tr>
+<td><code>orderType</code></td>
+<td><code>String</code></td>
+<td>empty</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td><code>symbol</code> in request</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td><code>Long</code></td>
+<td>server received timestamp</td>
+</tr>
+</tbody></table>
+
+<p><em>ERR</em> </p>
+
+<p>Response with non 0 <code>code</code> and status &quot;Err&quot; to explain detailed failure reason for each order in the batch request. Error detail for each order is in <code>info</code> field.</p>
+
+<p>Error schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>Long</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>ac</code></td>
+<td><code>String</code></td>
+<td><code>CASH</code>, <code>MARGIN</code></td>
+</tr>
+<tr>
+<td><code>accountId</code></td>
+<td><code>String</code></td>
+<td>account Id</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td><code>String</code></td>
+<td><code>batch-cancel-order</code></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>error message detail</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>String</code></td>
+<td>short error message</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td><code>Err</code></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>List</code></td>
+<td>See below for detail</td>
+</tr>
+</tbody></table>
+
+<p><code>info</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>Long</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>String</code></td>
+<td>echo <code>id</code> in request</td>
+</tr>
+<tr>
+<td><code>orderId</code></td>
+<td><code>String</code></td>
+<td>orderId in request to cancel</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>error message detail</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>String</code></td>
+<td>short error message</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td>symbol in order</td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>please refer to python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/cancel-batch-orders.py">cancel batch order</a></p>
 <h3 id='list-open-orders'>List Open Orders</h3>
 <blockquote>
 <p>Open Orders - Successful Response (Status 200, code 0)</p>
