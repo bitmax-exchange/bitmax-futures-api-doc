@@ -41,6 +41,7 @@ includes:
   - futures_rest_order_cancel
   - futures_rest_order_new_batch
   - futures_rest_order_cancel_batch
+  - futures_rest_order_cancel_all
   - futures_rest_order_open
   - futures_rest_order_hist
   - futures_rest_order_hist_curr
