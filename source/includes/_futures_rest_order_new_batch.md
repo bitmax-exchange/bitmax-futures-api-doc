@@ -96,9 +96,7 @@ You may submit up to 10 orders at a time. Server will respond with error if you 
 
 #### HTTP Request
 
-`POST <account-group>/api/pro/v1/{account-category}/order/batch`
-
-Set `account-category` to`cash` for cash account and `margin` for margin account.
+`POST <account-group>/api/pro/v1/futures/order/batch`
 
 #### Signature
 
