@@ -15,6 +15,10 @@ includes:
   - futures_rest_pub
   - futures_rest_pub_collaterals
   - futures_rest_pub_contracts
+  - futures_rest_pub_bar
+  - futures_rest_pub_depth
+  - futures_rest_pub_ticker
+  - futures_rest_pub_trades
   - futures_rest_pub_ref_px
   - futures_rest_pub_market_data
   - futures_rest_pub_funding_rates
@@ -37,6 +41,7 @@ includes:
   - futures_rest_order_cancel
   - futures_rest_order_open
   - futures_rest_order_hist
+  - futures_rest_order_hist_curr
 
   - futures_ws
   - futures_ws_keep_alive
