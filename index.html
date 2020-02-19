@@ -346,6 +346,9 @@
                           <a href="#cancel-batch-orders" class="toc-h3 toc-link" data-title="Cancel Batch Orders">Cancel Batch Orders</a>
                         </li>
                         <li>
+                          <a href="#cancel-all-orders" class="toc-h3 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
+                        </li>
+                        <li>
                           <a href="#list-open-orders" class="toc-h3 toc-link" data-title="List Open Orders">List Open Orders</a>
                         </li>
                         <li>
@@ -3077,9 +3080,7 @@ will respond with code other than 0 along with an error message.</p>
 
 <p>You may submit up to 10 orders at a time. Server will respond with error if you submit more than 10 orders.</p>
 <h4 id='http-request'>HTTP Request</h4>
-<p><code>POST &lt;account-group&gt;/api/pro/v1/{account-category}/order/batch</code></p>
-
-<p>Set <code>account-category</code> to<code>cash</code> for cash account and <code>margin</code> for margin account.</p>
+<p><code>POST &lt;account-group&gt;/api/pro/v1/futures/order/batch</code></p>
 <h4 id='signature'>Signature</h4>
 <p>You should sign the message in header as specified in <a href="#sign-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
 <h4 id='prehash-string'>Prehash String</h4>
@@ -3521,6 +3522,126 @@ Order detail for each order is in <code>info</code> field list.</p>
 </tbody></table>
 <h4 id='code-sample'>Code Sample</h4>
 <p>please refer to python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/cancel-batch-orders.py">cancel batch order</a></p>
+<h3 id='cancel-all-orders'>Cancel All Orders</h3>
+<blockquote>
+<p>Cancel All Orders - Successful ACK Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel-all"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NULL_VAL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582144746160</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ack"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Cancel all current open orders for the account specified, and optional symbol.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>DELETE &lt;account-group&gt;/api/pro/v1/futures/order/all</code></p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+order/all</code></p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>No</td>
+<td>Valid symbol supported by exchange</td>
+<td>If provided, only cancel all orders on this symbol; otherwise, cancel all open orders under this account.</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<p>Response include <code>code</code> and <code>data</code>, and status <code>Ack</code> (in field <code>data</code>) to indicate cancel all order request is received by server.</p>
+
+<p><code>data</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ac</strong></td>
+<td><code>String</code></td>
+<td><code>CASH</code>, <code>MARGIN</code></td>
+</tr>
+<tr>
+<td><strong>accountId</strong></td>
+<td><code>String</code></td>
+<td>account Id</td>
+</tr>
+<tr>
+<td><strong>action</strong></td>
+<td><code>String</code></td>
+<td><code>cancel-all</code>,</td>
+</tr>
+<tr>
+<td><strong>info</strong></td>
+<td><code>Json</code></td>
+<td>See below for detail</td>
+</tr>
+</tbody></table>
+
+<p><code>info</code> schema:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td><code>String</code></td>
+<td>echo back the <code>id</code> in request</td>
+</tr>
+<tr>
+<td><strong>orderId</strong></td>
+<td><code>String</code></td>
+<td>empty</td>
+</tr>
+<tr>
+<td><strong>orderType</strong></td>
+<td><code>String</code></td>
+<td>empty</td>
+</tr>
+<tr>
+<td><strong>symbol</strong></td>
+<td><code>String</code></td>
+<td><code>symbol</code> in request</td>
+</tr>
+<tr>
+<td><strong>timestamp</strong></td>
+<td><code>Long</code></td>
+<td>server received timestamp</td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>Refer to sample python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/cancel-all.py">cancel all order</a></p>
+<h4 id='caveat'>Caveat</h4>
+<p>The server will process the cancel all request with best effort. Orders sent but un-acked will not be canceled. You should rely on websocket order update messages or the RESTful api 
+to obtain the latest status of each order. </p>
 <h3 id='list-open-orders'>List Open Orders</h3>
 <blockquote>
 <p>Open Orders - Successful Response (Status 200, code 0)</p>
