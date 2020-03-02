@@ -352,6 +352,9 @@
                           <a href="#list-open-orders" class="toc-h3 toc-link" data-title="List Open Orders">List Open Orders</a>
                         </li>
                         <li>
+                          <a href="#query-order-by-id" class="toc-h3 toc-link" data-title="Query Order By ID">Query Order By ID</a>
+                        </li>
+                        <li>
                           <a href="#historical-orders" class="toc-h3 toc-link" data-title="Historical Orders">Historical Orders</a>
                         </li>
                         <li>
@@ -3780,6 +3783,185 @@ to obtain the latest status of each order. </p>
 <ul>
 <li><code>errorCode</code> is no longer included in the open order response. It is still included in the historical order query response.</li>
 </ul>
+<h3 id='query-order-by-id'>Query Order By ID</h3>
+<blockquote>
+<p>Query Order with a single order id - Successful Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="p">:</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">&lt;account-group&gt;/api/pro/v</span><span class="mi">1</span><span class="err">/futures/order/status?orderId=a</span><span class="mi">1707</span><span class="err">df</span><span class="mi">66</span><span class="err">b</span><span class="mi">8</span><span class="err">fU</span><span class="mi">924549015952</span><span class="err">eXV</span><span class="mi">1</span><span class="err">Pnc</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futob37bbDKmzK6BDIGzufXCtg0MZk3a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">       </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w">        </span><span class="s2">"9000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderQty"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"side"</span><span class="p">:</span><span class="w">         </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w">       </span><span class="s2">"New"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w">    </span><span class="s2">"Limit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avgPx"</span><span class="p">:</span><span class="w">        </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cumFee"</span><span class="p">:</span><span class="w">       </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cumFilledQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w">    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"execInst"</span><span class="p">:</span><span class="w">     </span><span class="s2">"NULL_VAL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"feeAsset"</span><span class="p">:</span><span class="w">     </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastExecTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582661266789</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w">      </span><span class="s2">"a1707df66b8fU924549015952eXV1Pnc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w">       </span><span class="mi">9327</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stopPrice"</span><span class="p">:</span><span class="w">    </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Query Order with a list of order ids - Successful Response (Status 200, code 0)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="p">:</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">&lt;account-group&gt;/api/pro/v</span><span class="mi">1</span><span class="err">/futures/order/status?orderId=a</span><span class="mi">1707</span><span class="err">df</span><span class="mi">66</span><span class="err">b</span><span class="mi">8</span><span class="err">fU</span><span class="mi">924549015952</span><span class="err">eXV</span><span class="mi">1</span><span class="err">Pnc</span><span class="p">,</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futob37bbDKmzK6BDIGzufXCtg0MZk3a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">       </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w">        </span><span class="s2">"9000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderQty"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w">         </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w">       </span><span class="s2">"New"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w">    </span><span class="s2">"Limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avgPx"</span><span class="p">:</span><span class="w">        </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumFee"</span><span class="p">:</span><span class="w">       </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumFilledQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w">    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"execInst"</span><span class="p">:</span><span class="w">     </span><span class="s2">"NULL_VAL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeAsset"</span><span class="p">:</span><span class="w">     </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastExecTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1582661266789</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w">      </span><span class="s2">"a1707df66b8fU924549015952eXV1Pnc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w">       </span><span class="mi">9327</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"stopPrice"</span><span class="p">:</span><span class="w">    </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Query order status, either open or history order.</p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>GET &lt;account-group&gt;/api/pro/v1/futures/order/status</code></p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>orderId</strong></td>
+<td>String</td>
+<td>Yes</td>
+<td>a single order id, or multiple order ids separated by <code>,</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>The API will respond with a list of objects in the <code>data</code> field. Each object in the list contains information of a single order. There&#39;s one exception, if you 
+use only a single orderId, the <code>data</code> field of the API response will be simplified to a single object. If you want the API to respond with a list of only one 
+object in this case, add a comma <code>,</code> to the orderId.</p>
+<h4 id='signature'>Signature</h4>
+<p>You should sign the message in header as specified in <a href="#sign-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+<h4 id='prehash-string'>Prehash String</h4>
+<p><code>&lt;timestamp&gt;+order/status</code></p>
+<h4 id='response'>Response</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>symbol</strong></td>
+<td><code>String</code></td>
+<td>symbol</td>
+</tr>
+<tr>
+<td><strong>price</strong></td>
+<td><code>String</code></td>
+<td>order price</td>
+</tr>
+<tr>
+<td><strong>orderQty</strong></td>
+<td><code>String</code></td>
+<td>order quantity</td>
+</tr>
+<tr>
+<td><strong>side</strong></td>
+<td><code>String</code></td>
+<td>order side</td>
+</tr>
+<tr>
+<td><strong>status</strong></td>
+<td><code>String</code></td>
+<td>order status</td>
+</tr>
+<tr>
+<td><strong>orderType</strong></td>
+<td><code>String</code></td>
+<td>order type</td>
+</tr>
+<tr>
+<td><strong>avgPx</strong></td>
+<td><code>String</code></td>
+<td>average fill price</td>
+</tr>
+<tr>
+<td><strong>cumFee</strong></td>
+<td><code>String</code></td>
+<td>cumulated filled comission</td>
+</tr>
+<tr>
+<td><strong>cumFilledQty</strong></td>
+<td><code>String</code></td>
+<td>cumulated filled qty</td>
+</tr>
+<tr>
+<td><strong>errorCode</strong></td>
+<td><code>String</code></td>
+<td>Could be empty</td>
+</tr>
+<tr>
+<td><strong>feeAsset</strong></td>
+<td><code>String</code></td>
+<td>Fee asset, e.g, <code>USDT</code></td>
+</tr>
+<tr>
+<td><strong>lastExecTime</strong></td>
+<td><code>String</code></td>
+<td>latest execution timestamp</td>
+</tr>
+<tr>
+<td><strong>orderId</strong></td>
+<td><code>String</code></td>
+<td>order id</td>
+</tr>
+<tr>
+<td><strong>seqNum</strong></td>
+<td><code>Long</code></td>
+<td>sequence number</td>
+</tr>
+<tr>
+<td><strong>stopPrice</strong></td>
+<td><code>String</code></td>
+<td>stop price(could be empty)</td>
+</tr>
+<tr>
+<td><strong>execInst</strong></td>
+<td><code>String</code></td>
+<td>execution instruction, <code>POST</code> for Post-Only orders, <code>Liquidation</code> for forced-liquidation orders, and <code>NULL_VAL</code> otherwise.</td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>Please refer to python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/lookup-order-status-by-id.py">get order status</a></p>
 <h3 id='historical-orders'>Historical Orders</h3><h3 id='list-current-history-orders'>List Current History Orders</h3>
 <blockquote>
 <p>Current History Orders - Successful Response (Status 200, code 0)</p>
