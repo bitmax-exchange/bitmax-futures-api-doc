@@ -778,7 +778,7 @@ to apply for new API keys. </p>
 <blockquote>
 <p>Futures Collateral Assets </p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax-test.io/api/pro/v1/futures/collateral
+<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax.io/api/pro/v1/futures/collateral
 </code></pre>
 <blockquote>
 <p>Sample Resonse</p>
@@ -841,7 +841,7 @@ the adjusted USDT value of its all collateral assets. </p>
 <blockquote>
 <p>Futures Contracts</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax-test.io/api/pro/v1/futures/contracts
+<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax.io/api/pro/v1/futures/contracts
 </code></pre>
 <blockquote>
 <p>Sample Resonse</p>
@@ -1433,7 +1433,7 @@ If you want to wrap the object in a one-element list, append a comma to the symb
 <blockquote>
 <p>Reference Prices for Futures Collateral Assets </p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax-test.io/api/pro/v1/futures/ref-px
+<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax.io/api/pro/v1/futures/ref-px
 </code></pre><h4 id='permissions'>Permissions</h4>
 <p>This API is public. </p>
 <h4 id='http-request'>HTTP Request</h4>
@@ -1443,7 +1443,7 @@ If you want to wrap the object in a one-element list, append a comma to the symb
 <p>Futures Market Data for one Contract</p>
 </blockquote>
 <pre class="highlight plaintext"><code># if only one symbol is provided, the API will respond with a single object
-curl -X GET https://bitmax-test.io/api/pro/futures/market-data?symbol=BTC-PERP
+curl -X GET https://bitmax.io/api/pro/futures/market-data?symbol=BTC-PERP
 </code></pre>
 <blockquote>
 <p>Sample Resonse</p>
@@ -1466,7 +1466,7 @@ curl -X GET https://bitmax-test.io/api/pro/futures/market-data?symbol=BTC-PERP
 <p>Futures Market Data for one or multiple Contracts</p>
 </blockquote>
 <pre class="highlight plaintext"><code># Appending a comma (,) and the API will respond with a list of one or more objects
-curl -X GET https://bitmax-test.io/futures/market-data?symbol=BTC-PERP,
+curl -X GET https://bitmax.io/futures/market-data?symbol=BTC-PERP,
 </code></pre>
 <blockquote>
 <p>Sample Resonse</p>
@@ -1577,7 +1577,7 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 <blockquote>
 <p>Futures Funding Rates </p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax-test.io/api/pro/v1/futures/funding-rates
+<pre class="highlight shell tab-shell"><code>curl -X GET https://bitmax.io/api/pro/v1/futures/funding-rates
 </code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2288,7 +2288,7 @@ to you account. </p>
 <blockquote>
 <p>Request Body - Transfer Fund from Cash to Futures Account</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//bitmax-test.io/</span><span class="mi">0</span><span class="err">/api/pro/v</span><span class="mi">1</span><span class="err">/futures/transfer/deposit</span><span class="w"> 
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//bitmax.io/</span><span class="mi">0</span><span class="err">/api/pro/v</span><span class="mi">1</span><span class="err">/futures/transfer/deposit</span><span class="w"> 
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
@@ -2345,7 +2345,7 @@ will respond with code other than 0 along with an error message.</p>
 <blockquote>
 <p>Request Body - Transfer Fund from Futures to Cash Account</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//bitmax-test.io/</span><span class="mi">0</span><span class="err">/api/pro/v</span><span class="mi">1</span><span class="err">/futures/transfer/withdraw</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//bitmax.io/</span><span class="mi">0</span><span class="err">/api/pro/v</span><span class="mi">1</span><span class="err">/futures/transfer/withdraw</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
@@ -4292,7 +4292,7 @@ wscat -c wss://bitmax.io/1/api/pro/stream -w 1 -x <span class="s2">"{</span><spa
 npm install -g wscat
 
 <span class="c"># Connect to websocket</span>
-wscat -c wss://bitmax-test.io/0/api/pro/v1/stream -x <span class="s1">'{"op":"sub", "ch": "depth:BTC-PERP"}'</span>
+wscat -c wss://bitmax.io/0/api/pro/v1/stream -x <span class="s1">'{"op":"sub", "ch": "depth:BTC-PERP"}'</span>
 </code></pre>
 <blockquote>
 <p>You can also setup authorized session</p>
