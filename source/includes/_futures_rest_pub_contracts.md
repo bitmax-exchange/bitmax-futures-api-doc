@@ -3,7 +3,7 @@
 > Futures Contracts
 
 ```shell
-curl -X GET https://bitmax-test.io/api/pro/v1/futures/contracts
+curl -X GET https://bitmax.io/api/pro/v1/futures/contracts
 ```
 
 > Sample Resonse

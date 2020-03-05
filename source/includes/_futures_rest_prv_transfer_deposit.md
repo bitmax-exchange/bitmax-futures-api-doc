@@ -3,7 +3,7 @@
 > Request Body - Transfer Fund from Cash to Futures Account
 
 ```json
-// URL https://bitmax-test.io/0/api/pro/v1/futures/transfer/deposit 
+// URL https://bitmax.io/0/api/pro/v1/futures/transfer/deposit 
 {
     "asset": "ETH",
     "amount": "1"

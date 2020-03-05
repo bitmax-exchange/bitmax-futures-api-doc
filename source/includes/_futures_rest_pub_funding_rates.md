@@ -3,7 +3,7 @@
 > Futures Funding Rates 
 
 ```shell
-curl -X GET https://bitmax-test.io/api/pro/v1/futures/funding-rates
+curl -X GET https://bitmax.io/api/pro/v1/futures/funding-rates
 ```
 
 ```json

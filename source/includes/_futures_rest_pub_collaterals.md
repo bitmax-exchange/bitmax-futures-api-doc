@@ -3,7 +3,7 @@
 > Futures Collateral Assets 
 
 ```shell
-curl -X GET https://bitmax-test.io/api/pro/v1/futures/collateral
+curl -X GET https://bitmax.io/api/pro/v1/futures/collateral
 ```
 
 > Sample Resonse
