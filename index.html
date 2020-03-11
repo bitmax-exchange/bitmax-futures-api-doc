@@ -227,6 +227,9 @@
                     <a href="#using-bitmax-futures-trading-api" class="toc-h2 toc-link" data-title="Using BitMax Futures Trading API">Using BitMax Futures Trading API</a>
                   </li>
                   <li>
+                    <a href="#change-log" class="toc-h2 toc-link" data-title="Change Log">Change Log</a>
+                  </li>
+                  <li>
                     <a href="#terminology" class="toc-h2 toc-link" data-title="Terminology">Terminology</a>
                     <ul class="toc-list-h3">
                         <li>
@@ -474,6 +477,12 @@
 </ul>
 
 <p>The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. </p>
+<h2 id='change-log'>Change Log</h2>
+<p><strong>2020-03-10</strong></p>
+
+<p>Added <code>maxBuyNotional</code> and <code>maxSellNotional</code> to <code>futures/position</code> RESTful API. The two existing fields <code>maxBuyOrderSize</code> and <code>maxSellOrderSize</code> are deprecated and will be removed in the next release. </p>
+
+<p>Added <code>mbn</code> and <code>msn</code> to the <code>futures-position</code> message (WebSocket). The two existing fields <code>mbos</code> and <code>msos</code> are deprecated and will be removed in the next release. </p>
 <h2 id='terminology'>Terminology</h2><h3 id='asset-collateral-asset'>Asset / Collateral Asset</h3>
 <p><strong>collateral asset</strong> refers to the cryptocurrency held in the account. Each collateral asset is uniquely identified by
 an <code>asset</code> code. For instance, Bitcoin is one collateral asset and has asset code <code>BTC</code>. </p>
@@ -1843,13 +1852,25 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 <tr>
 <td><strong>maxBuyOrderSize</strong></td>
 <td><code>String</code></td>
-<td>maximum quantity allowed to buy</td>
+<td>maximum quantity allowed to buy (deprecated, use <strong>maxBuyNotional</strong>)</td>
 <td><code>&quot;44.612137464&quot;</code></td>
 </tr>
 <tr>
 <td><strong>maxSellOrderSize</strong></td>
 <td><code>String</code></td>
-<td>maximum quantity allowed to sell</td>
+<td>maximum quantity allowed to sell (deprecated, use <strong>maxSellNotional</strong>)</td>
+<td><code>&quot;38.962207464&quot;</code></td>
+</tr>
+<tr>
+<td><strong>maxBuyNotional</strong></td>
+<td><code>String</code></td>
+<td>maximum notional allowed to buy</td>
+<td><code>&quot;44.612137464&quot;</code></td>
+</tr>
+<tr>
+<td><strong>maxSellNotional</strong></td>
+<td><code>String</code></td>
+<td>maximum notional allowed to sell</td>
 <td><code>&quot;38.962207464&quot;</code></td>
 </tr>
 <tr>
@@ -1917,6 +1938,11 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 <td><strong>accountMarginRate</strong></td>
 <td><code>String</code></td>
 <td>account marging rate</td>
+</tr>
+<tr>
+<td><strong>accountValue</strong></td>
+<td><code>String</code></td>
+<td>account value</td>
 </tr>
 <tr>
 <td><strong>accountMaxLeverage</strong></td>
@@ -1994,10 +2020,6 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 
 <p>You can only increase your exposure if have free collateral. You shall post more collaterals by depositing one or more collateral assets
 to you account. </p>
-
-<p><strong>Notional</strong></p>
-
-<p><strong>Profit/Loss</strong> </p>
 <h3 id='funding-payment-history'>Funding Payment History</h3>
 <blockquote>
 <p>Funding Payment History</p>
