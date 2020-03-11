@@ -41,5 +41,7 @@ The `data` field is an object with following fields:
 **bepx** | `String`  |  break-even price
 **pnl**  | `String`  |  contract position profit/loss in USDT
 **ucol** | `String`  |  collateral in use (in USDT)
-**mbos** | `String`  |  maximum quantity allowed to buy
-**msos** | `String`  |  maximum quantity allowed to sell
+**mbos** | `String`  |  maximum quantity allowed to buy (deprecated, use **mbn** instead)
+**msos** | `String`  |  maximum quantity allowed to sell (deprecated, use **msn** instead)
+**mbn**  | `String`  |  maximum notional allowed to buy
+**msn**  | `String`  |  maximum notional allowed to sell
