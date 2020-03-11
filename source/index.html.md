@@ -87,6 +87,15 @@ The BitMax Futures API is based on RESTful and WebSocket.
 The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. 
 
 
+## Change Log
+
+**2020-03-10**
+
+Added `maxBuyNotional` and `maxSellNotional` to `futures/position` RESTful API. The two existing fields `maxBuyOrderSize` and `maxSellOrderSize` are deprecated and will be removed in the next release. 
+
+Added `mbn` and `msn` to the `futures-position` message (WebSocket). The two existing fields `mbos` and `msos` are deprecated and will be removed in the next release. 
+
+
 ## Terminology 
 
 ### Asset / Collateral Asset 

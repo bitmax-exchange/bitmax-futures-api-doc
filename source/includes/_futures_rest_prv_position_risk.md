@@ -42,6 +42,7 @@ You need view permission to access this API.
  Name                              | Type     | Description
 ---------------------------------- | -------- | --------------------- 
 **accountMarginRate**              | `String` | account marging rate 
+**accountValue**                   | `String` | account value
 **accountMaxLeverage**             | `String` | account maximum leverage 
 **currentLeverage**                | `String` | account current leverage 
 **effectiveInitialMarginRate**     | `String` | 
@@ -62,9 +63,3 @@ You need view permission to access this API.
 
 You can only increase your exposure if have free collateral. You shall post more collaterals by depositing one or more collateral assets
 to you account. 
-
-**Notional**
-
-**Profit/Loss** 
-
-

@@ -46,17 +46,19 @@ You don't need to specify any parameter for this API.
 
 #### Response Content
 
- Name                   | Type     | Description                              | Sample Response
------------------------ | -------- | ---------------------------------------- | -------------------------
-**symbol**              | `String` | contract symbol                          | `"BTC-PERP"`
-**breakevenPrice**      | `String` | break-even price                         | `"12805.265370586"`
-**estLiquidationPrice** | `String` | estimated liquidation price              | `"16365.898288993"`
-**collateralInUse**     | `String` | collateral in Use (in USDT)              | `"1350.314802427"`
-**maxBuyOrderSize**     | `String` | maximum quantity allowed to buy          | `"44.612137464"`
-**maxSellOrderSize**    | `String` | maximum quantity allowed to sell         | `"38.962207464"`
-**position**            | `String` | contract position                        | `"-2.8535"`
-**positionNotional**    | `String` | contract position notional value in USDT | `"-27006.296048541"`
-**positionPnl**         | `String` | contract position profit/loss in USDT    | `"9533.528686427"`
+ Name                   | Type     | Description                                                            | Sample Response
+----------------------- | -------- | ---------------------------------------------------------------------- | -------------------------
+**symbol**              | `String` | contract symbol                                                        | `"BTC-PERP"`
+**breakevenPrice**      | `String` | break-even price                                                       | `"12805.265370586"`
+**estLiquidationPrice** | `String` | estimated liquidation price                                            | `"16365.898288993"`
+**collateralInUse**     | `String` | collateral in Use (in USDT)                                            | `"1350.314802427"`
+**maxBuyOrderSize**     | `String` | maximum quantity allowed to buy (deprecated, use **maxBuyNotional**)   | `"44.612137464"`
+**maxSellOrderSize**    | `String` | maximum quantity allowed to sell (deprecated, use **maxSellNotional**) | `"38.962207464"`
+**maxBuyNotional**      | `String` | maximum notional allowed to buy                                        | `"44.612137464"`
+**maxSellNotional**     | `String` | maximum notional allowed to sell                                       | `"38.962207464"`
+**position**            | `String` | contract position                                                      | `"-2.8535"`
+**positionNotional**    | `String` | contract position notional value in USDT                               | `"-27006.296048541"`
+**positionPnl**         | `String` | contract position profit/loss in USDT                                  | `"9533.528686427"`
 
 
 #### Code Sample
