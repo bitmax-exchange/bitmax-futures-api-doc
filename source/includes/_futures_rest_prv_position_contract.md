@@ -9,14 +9,18 @@
     "data": [
         {
             "symbol":              "BTC-PERP",
-            "breakevenPrice":      "12805.265370586",
-            "collateralInUse":     "1350.314802427",
-            "estLiquidationPrice": "16365.898288993",
-            "maxBuyOrderSize":     "44.612137464",
-            "maxSellOrderSize":    "38.962207464",
-            "position":            "-2.8535",
-            "positionNotional":    "-27006.296048541",
-            "positionPnl":         "9533.528686427"
+            "position":            "0.0012",
+            "positionNotional":    "9.392250374",
+            "breakevenPrice":      "7921.3512875",
+            "estLiquidationPrice": "7075.175014796",
+            "positionPnl":         "-0.11337117",
+            "collateralInUse":     "12.194125037",
+            "maxBuyOrderSize":     "0.000225911",
+            "maxSellOrderSize":    "0.016837925",
+            "maxBuyNotional":      "1.768180713",
+            "maxSellNotional":     "131.788346455",
+            "indexPrice":          "7818.4225",
+            "markPrice":           "7826.875312457"
         }
     ]
 }
@@ -59,9 +63,11 @@ You don't need to specify any parameter for this API.
 **position**            | `String` | contract position                                                      | `"-2.8535"`
 **positionNotional**    | `String` | contract position notional value in USDT                               | `"-27006.296048541"`
 **positionPnl**         | `String` | contract position profit/loss in USDT                                  | `"9533.528686427"`
+**indexPrice**          | `String` | underlying index price                                                 | `"7818.4225"`  
+**markPrice**           | `String` | contract mark price                                                    | `"7826.875312457"`
 
 
 #### Code Sample
 
-Please refer to python code to [query funding payments](https://github.com/???/query-futures-position.py)
+Please refer to python code to [query funding payments](https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/query-futures-position.py)
 

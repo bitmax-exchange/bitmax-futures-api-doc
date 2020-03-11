@@ -93,6 +93,13 @@ The RESTful API has JSON-encoded responses. All websocket messages are JSON-enco
 
 ## Change Log
 
+**2020-03-11**
+
+Added `indexPrice` and `markPrice` to `futures/position` RESTful API.
+
+Added `idxPx` and `markPx` to the `futures-position` message (WebSocket).
+
+
 **2020-03-10**
 
 Added `maxBuyNotional` and `maxSellNotional` to `futures/position` RESTful API. The two existing fields `maxBuyOrderSize` and `maxSellOrderSize` are deprecated and will be removed in the next release. 
