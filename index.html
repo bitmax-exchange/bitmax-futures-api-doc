@@ -488,6 +488,12 @@
 
 <p>The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. </p>
 <h2 id='change-log'>Change Log</h2>
+<p><strong>2020-03-11</strong></p>
+
+<p>Added <code>indexPrice</code> and <code>markPrice</code> to <code>futures/position</code> RESTful API.</p>
+
+<p>Added <code>idxPx</code> and <code>markPx</code> to the <code>futures-position</code> message (WebSocket).</p>
+
 <p><strong>2020-03-10</strong></p>
 
 <p>Added <code>maxBuyNotional</code> and <code>maxSellNotional</code> to <code>futures/position</code> RESTful API. The two existing fields <code>maxBuyOrderSize</code> and <code>maxSellOrderSize</code> are deprecated and will be removed in the next release. </p>
@@ -1805,14 +1811,18 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w">              </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"breakevenPrice"</span><span class="p">:</span><span class="w">      </span><span class="s2">"12805.265370586"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"collateralInUse"</span><span class="p">:</span><span class="w">     </span><span class="s2">"1350.314802427"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"estLiquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16365.898288993"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"maxBuyOrderSize"</span><span class="p">:</span><span class="w">     </span><span class="s2">"44.612137464"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"maxSellOrderSize"</span><span class="p">:</span><span class="w">    </span><span class="s2">"38.962207464"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"position"</span><span class="p">:</span><span class="w">            </span><span class="s2">"-2.8535"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"positionNotional"</span><span class="p">:</span><span class="w">    </span><span class="s2">"-27006.296048541"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"positionPnl"</span><span class="p">:</span><span class="w">         </span><span class="s2">"9533.528686427"</span><span class="w">
+            </span><span class="s2">"position"</span><span class="p">:</span><span class="w">            </span><span class="s2">"0.0012"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"positionNotional"</span><span class="p">:</span><span class="w">    </span><span class="s2">"9.392250374"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"breakevenPrice"</span><span class="p">:</span><span class="w">      </span><span class="s2">"7921.3512875"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"estLiquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7075.175014796"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"positionPnl"</span><span class="p">:</span><span class="w">         </span><span class="s2">"-0.11337117"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"collateralInUse"</span><span class="p">:</span><span class="w">     </span><span class="s2">"12.194125037"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxBuyOrderSize"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0.000225911"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxSellOrderSize"</span><span class="p">:</span><span class="w">    </span><span class="s2">"0.016837925"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxBuyNotional"</span><span class="p">:</span><span class="w">      </span><span class="s2">"1.768180713"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxSellNotional"</span><span class="p">:</span><span class="w">     </span><span class="s2">"131.788346455"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"indexPrice"</span><span class="p">:</span><span class="w">          </span><span class="s2">"7818.4225"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"markPrice"</span><span class="p">:</span><span class="w">           </span><span class="s2">"7826.875312457"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1901,9 +1911,21 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 <td>contract position profit/loss in USDT</td>
 <td><code>&quot;9533.528686427&quot;</code></td>
 </tr>
+<tr>
+<td><strong>indexPrice</strong></td>
+<td><code>String</code></td>
+<td>underlying index price</td>
+<td><code>&quot;7818.4225&quot;</code></td>
+</tr>
+<tr>
+<td><strong>markPrice</strong></td>
+<td><code>String</code></td>
+<td>contract mark price</td>
+<td><code>&quot;7826.875312457&quot;</code></td>
+</tr>
 </tbody></table>
 <h4 id='code-sample'>Code Sample</h4>
-<p>Please refer to python code to <a href="https://github.com/???/query-futures-position.py">query funding payments</a></p>
+<p>Please refer to python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/query-futures-position.py">query funding payments</a></p>
 <h3 id='account-risk-profile'>Account Risk Profile</h3>
 <blockquote>
 <p>Account Risk Profile </p>
@@ -4845,19 +4867,23 @@ you can use to update the order book snapshot. In the message, <code>price</code
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futures-position"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futQtyfq8XLAA9kcf19h8bXHbAwwoqDo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"s"</span><span class="p">:</span><span class="w">    </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w">   </span><span class="mi">12231</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pos"</span><span class="p">:</span><span class="w">  </span><span class="s2">"0.09"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"posn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"762.664258566"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liq"</span><span class="p">:</span><span class="w">  </span><span class="s2">"8923.12309342"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bepx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7039.079563344"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pnl"</span><span class="p">:</span><span class="w">  </span><span class="s2">"129.147097865"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ucol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68.133212928"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mbos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29.749513885"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"msos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29.99781026"</span><span class="w">
+        </span><span class="s2">"s"</span><span class="p">:</span><span class="w">      </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w">      </span><span class="mi">4313059355</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pos"</span><span class="p">:</span><span class="w">    </span><span class="s2">"0.0012"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"posn"</span><span class="p">:</span><span class="w">   </span><span class="s2">"9.383626273"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liq"</span><span class="p">:</span><span class="w">    </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bepx"</span><span class="p">:</span><span class="w">   </span><span class="s2">"7921.3512875"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pnl"</span><span class="p">:</span><span class="w">    </span><span class="s2">"-0.121995271"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ucol"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.938362627"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mbn"</span><span class="p">:</span><span class="w">    </span><span class="s2">"113.114849969"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"msn"</span><span class="p">:</span><span class="w">    </span><span class="s2">"131.69442999"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mbos"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.01446539"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"msos"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.01684139"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"idxPx"</span><span class="p">:</span><span class="w">  </span><span class="s2">"7811.290850445"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markPx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7819.68856122"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='channel'>Channel</h4>
@@ -4931,6 +4957,16 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td><strong>msn</strong></td>
 <td><code>String</code></td>
 <td>maximum notional allowed to sell</td>
+</tr>
+<tr>
+<td><strong>idxPx</strong></td>
+<td><code>String</code></td>
+<td>underlying index price</td>
+</tr>
+<tr>
+<td><strong>markPx</strong></td>
+<td><code>String</code></td>
+<td>contract mark price</td>
 </tr>
 </tbody></table>
 <h3 id='channel-futures-collateral-updates'>Channel: Futures Collateral Updates</h3>
@@ -5636,7 +5672,7 @@ the timely order book data. </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futQtyfq8XLAA9kcf19h8bXHbAwwoqDo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel-all"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ack"</span><span class="p">,</span><span class="w">
