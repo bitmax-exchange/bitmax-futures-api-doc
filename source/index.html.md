@@ -70,6 +70,10 @@ includes:
   - futures_ws_req_order_cancel
   - futures_ws_req_order_cancel_all
 
+header_navigators:
+  - <a href="https://github.com/bitmax-exchange/bitmax-pro-api">BitMax Cash/Margin APIs</a>
+  - <a href="https://github.com/bitmax-exchange/bitmax-futures-api-doc" class="current">Futures APIs</a>
+
 search: true
 ---
 
