@@ -3,7 +3,7 @@
 > Ticker for one product
 
 ```json
-// curl -X GET 'https://bfutures.io/api/pro/v1/ticker?symbol=BTC-PERP'
+// curl -X GET 'https://bitmax.io/api/pro/v1/ticker?symbol=BTC-PERP'
 {
     "code": 0,
     "data": {
@@ -22,7 +22,7 @@
 > List of Tickers for one or multiple products
 
 ```json
-// curl -X GET "https://bfutures.io/api/pro/v1/ticker?symbol=BTC-PERP,"
+// curl -X GET "https://bitmax.io/api/pro/v1/ticker?symbol=BTC-PERP,"
 {
     "code": 0,
     "data": [
@@ -79,4 +79,4 @@ Each ticker object contains the following fields:
 
 #### Code Sample
 
-Please refer to python code to [query ticker info]{https://github.com/bithumbfutures/bithumb-futures-api-demo/blob/master/python/query-ticker.py}
+Please refer to python code to [query ticker info]{https://github.com/bitmax-exchange/bitmax-pro-api-demo/blob/master/python/query_pub_ticker.py}
