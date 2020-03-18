@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - java
 
 toc_footers:
-  - <a href='https://bitmax-test.io'>BitMax.io</a>
+  - <a href='https://bitmax.io'>BitMax.io</a>
 
 includes:
   - futures_rest
@@ -85,8 +85,8 @@ search: true
 The BitMax Futures API is based on RESTful and WebSocket. 
 
 
-* The base URL for the RESTful API is `https://bitmax-test.io/`. 
-* The URL for the WebSocket is: `https://bitmax-test.io/<account-group>/api/v1/stream`. You will have to substitute `<account-group>` with your account group. 
+* The base URL for the RESTful API is `https://bitmax.io/`. 
+* The URL for the WebSocket is: `https://bitmax.io/<account-group>/api/v1/stream`. You will have to substitute `<account-group>` with your account group. 
 
 The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. 
 
@@ -161,7 +161,7 @@ curl -X GET -i \
   -H "x-auth-key: $APIKEY" \
   -H "x-auth-signature: $SIGNATURE" \
   -H "x-auth-timestamp: $TIMESTAMP" \
-  https://bitmax-test.io/api/pro/v1/info
+  https://bitmax.io/api/pro/v1/info
 ```
 
 ```python
