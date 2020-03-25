@@ -4639,7 +4639,7 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <li>if <code>size</code> is zero, you should <strong>delete</strong> the level at <code>price</code>. </li>
 </ul>
 
-<p>See <a href="#orderbook-snapshot">Orderbook Snapshot</a> for code examples.</p>
+<p>See <a href="#ws-orderbook-snapshot">Orderbook Snapshot</a> for code examples.</p>
 <h3 id='channel-futures-market-data'>Channel: Futures Market Data</h3>
 <blockquote>
 <p>Subscribe to Futures Market Data</p>
@@ -5276,7 +5276,7 @@ you can use to update the order book snapshot. In the message, <code>price</code
 
 <ul>
 <li>Connecting to WebSocket Stream</li>
-<li>Subscribe to the depth update stream, see <a href="#level-2-order-book-updates-depth">Level 2 Order Book Updates (Depth)</a>.</li>
+<li>Subscribe to the depth update stream, see <a href="#channel-level-2-order-book-updates">Level 2 Order Book Updates (Depth)</a>.</li>
 <li>Send a <code>depth-snapshot</code> request to the server.</li>
 <li>Once you obtain the snapshot message from the server, initialize the snapshot.</li>
 <li>Using consequent <code>depth</code> messages to update the order book.</li>
