@@ -5,7 +5,7 @@
 ```json
 {
   "op": "req",
-  "action": "cancel-Order",
+  "action": "cancel-order",
   "account": "futures",
   "args": {
     "time":    1574165050128,

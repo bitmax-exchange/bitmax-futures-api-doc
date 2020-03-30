@@ -86,7 +86,7 @@ The BitMax Futures API is based on RESTful and WebSocket.
 
 
 * The base URL for the RESTful API is `https://bitmax.io/`. 
-* The URL for the WebSocket is: `https://bitmax.io/<account-group>/api/v1/stream`. You will have to substitute `<account-group>` with your account group. 
+* The URL for the WebSocket is: `https://bitmax.io/<account-group>/api/pro/v1/stream`. You will have to substitute `<account-group>` with your account group. 
 
 The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. 
 
