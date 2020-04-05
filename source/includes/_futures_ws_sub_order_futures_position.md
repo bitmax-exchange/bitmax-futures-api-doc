@@ -51,3 +51,5 @@ The `data` field is an object with following fields:
 **msn**    | `String`  | maximum notional allowed to sell
 **idxPx**  | `String`  | underlying index price
 **markPx** | `String`  | contract mark price
+**tp**     | `Optional[String]` | transaction type 
+**id**     | `Optional[String]` | request Id 

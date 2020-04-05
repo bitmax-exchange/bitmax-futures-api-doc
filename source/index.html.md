@@ -93,6 +93,11 @@ The RESTful API has JSON-encoded responses. All websocket messages are JSON-enco
 
 ## Change Log
 
+**2020-04-05**
+
+Added three fields to WebSocket channel `futures-collateral`: requestId `id`, transactionType `tp`, and transaction number `txNum`.
+
+
 **2020-03-11**
 
 Added `indexPrice` and `markPrice` to `futures/position` RESTful API.

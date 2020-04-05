@@ -4,10 +4,14 @@
 {
     "code": 0,
     "data": {
+        "hasNext":  true,
+        "limit":    50,
+        "page":     1,
+        "pageSize": 1,
         "data": [
             {
                 "accountId": "futTw9jxEMmQN671ESZdXhtF8WQRpGj0",
-                "msgOffset":  4478311786,
+                "execId":     4478311786,
                 "requestId": "etPW1yCIRZytSuWo",
                 "msgType":   "FuturePnlSettlement",
                 "orderType": "FuturesSettle",
@@ -19,7 +23,6 @@
                         "currBalance":  "0",
                         "deltaAmount":  "-0.553585375",
                         "fee":          "0",
-                        "isValid":      True,
                         "prevBalance":  "0.553585375",
                         "refPrice":     "1",
                         "refPriceTime":  1584561494329,
@@ -30,7 +33,6 @@
                         "currBalance":  "8.291745058",
                         "deltaAmount":  "0.553585375",
                         "fee":          "0",
-                        "isValid":      True,
                         "prevBalance":  "7.738159683",
                         "refPrice":     "1",
                         "refPriceTime":  1584561494329,
@@ -38,15 +40,12 @@
                     }
                 ]
             }
-        ],
-        "hasNext":  True,
-        "limit":    50,
-        "page":     1,
-        "pageSize": 1
+        ]
     }
 }
 ```
 
+** This API hasn't been finalized.**
 
 #### HTTP Request
 
@@ -69,20 +68,8 @@ You should sign the message in header as specified in [**Authenticate a RESTful 
 
 #### Response
 
-Name             | Type     | Description
----------------- | -------- | ------------- 
-**accountId**    | `String` | symbol
-**msgOffset**    | `Long`   | a unique identifier for the balance-update record. For the same account, `msgOffset` also defines the order of balance update records.
-**requestId**    | `String` | the request Id of the record. 
-**msgType**      | `String` | type of the balance update (level 1 category, see remarks below)
-**orderType**    | `String` | order type of the balance update (level 3 category, see remarks below)
-**txType**       | `String` | transaction type of the balance update (level 3 category, see remarks below)
+See [Lookup Balance Update Records by Id](#lookup-balance-update-records-by-id). 
 
+#### Code Sample
 
-*Remarks*
-
-You can only determine order of balance updates by comparing `msgOffset` for the same account. Comparing `msgOffset` across different accounts is meaningless.
-
-In special case of order fills/partial filles, the `requestId` is the same as `orderId`. Since an order can be partially filled more than one time, it could result in more than one balance update records. Therefore, `requestId` is not the unique identifier for balance updates. 
-
-The three types parameter `msgType`, `orderType` and `txType` determines the nature of the balance update record. Currently
+Refer to sample python code to [query futures balance update history](https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/query-futures-balance-update-history.py)
