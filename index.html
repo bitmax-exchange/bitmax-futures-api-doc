@@ -488,6 +488,10 @@
 
 <p>The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. </p>
 <h2 id='change-log'>Change Log</h2>
+<p><strong>2020-04-05</strong></p>
+
+<p>Added three fields to WebSocket channel <code>futures-collateral</code>: requestId <code>id</code>, transactionType <code>tp</code>, and transaction number <code>txNum</code>.</p>
+
 <p><strong>2020-03-11</strong></p>
 
 <p>Added <code>indexPrice</code> and <code>markPrice</code> to <code>futures/position</code> RESTful API.</p>
@@ -4968,6 +4972,16 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td><code>String</code></td>
 <td>contract mark price</td>
 </tr>
+<tr>
+<td><strong>tp</strong></td>
+<td><code>Optional[String]</code></td>
+<td>transaction type</td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td><code>Optional[String]</code></td>
+<td>request Id</td>
+</tr>
 </tbody></table>
 <h3 id='channel-futures-collateral-updates'>Channel: Futures Collateral Updates</h3>
 <blockquote>
@@ -4982,7 +4996,10 @@ you can use to update the order book snapshot. In the message, <code>price</code
         </span><span class="s2">"sn"</span><span class="p">:</span><span class="w"> </span><span class="mi">12503</span><span class="p">,</span><span class="w">
         </span><span class="s2">"tb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"ab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+        </span><span class="s2">"mt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2uYRFjUyNPTzygj3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TakeOver"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"txNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='channel'>Channel</h4>
@@ -5022,7 +5039,37 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td><code>String</code></td>
 <td>maximum transferrable amount</td>
 </tr>
+<tr>
+<td><strong>id</strong></td>
+<td><code>String</code></td>
+<td>requestId of the record</td>
+</tr>
+<tr>
+<td><strong>tp</strong></td>
+<td><code>String</code></td>
+<td>transaction type</td>
+</tr>
+<tr>
+<td><strong>txNum</strong></td>
+<td><code>Int</code></td>
+<td>transaction number of the record</td>
+</tr>
 </tbody></table>
+<h5 id='tp-transaction-type'>tp - Transaction Type</h5>
+<p>The <code>tp</code> field in the message shows the reason of the balance update. Currently the following messages are supported:</p>
+
+<ul>
+<li><code>TakeOver</code> - the account has been taken over due to hightened risk exposure.</li>
+<li><code>PositionInjectionBLP</code> - position injected to Backstop Liquidity Providers (BLPs), you will only see this message if your account is registered as a BLP with the exchange.</li>
+<li><code>PositionInjection</code> - position injected to regular accounts. </li>
+<li><code>FundingPayment</code> - funding payment made to the account.</li>
+<li>For other cases, the <code>tp</code> is set to an empty string.</li>
+</ul>
+<h5 id='txnum-transaction-number'>txNum - Transaction Number</h5>
+<p>Some balance updates, such as position injection, are done in batches. The <code>txNum</code> can help you identify such updates. For a batch of <em>n</em> update messages, the <em>i</em>-th message
+will have <code>txNum = n-i</code> - that is, the first message will have <code>txNum = n-1</code> and the last message will have <code>txNum = 0</code>. </p>
+<h4 id='retrieve-transaciton-details'>Retrieve Transaciton Details</h4>
+<p>You can use <code>sn</code> to retrieve balance update details using the RESTful API. See <a href="#lookup-balance-update-records-by-id">Lookup Balance Update Records by Id</a></p>
 <h3 id='channel-futures-account-risk'>Channel: Futures Account Risk</h3>
 <blockquote>
 <p>Futures Risk (overall account data)</p>
