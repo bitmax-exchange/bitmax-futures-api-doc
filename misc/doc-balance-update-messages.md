@@ -77,7 +77,7 @@ change in reference cost (`rcdlt`) are 0s.
 
 ## Placing a Taker Order
 
-You will receive the following messages after each accepted new maker order request: 
+You will receive the following messages after each accepted new taker order request: 
 
     // order details 
     {
@@ -113,7 +113,7 @@ You will receive the following messages after each accepted new maker order requ
     }
 
 
-Following the order message, you will receive the `futures-position` message. Since the take order has been filled/partially filled, you will see non-zero values in
+Following the order message, you will receive the `futures-position` message. Since the take order has been filled/partially-filled, you will see non-zero values in
 field `posdlt` and field `rcdlt`.  
 
     // Contract Position Update 
