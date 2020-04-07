@@ -116,7 +116,6 @@ You will receive the following messages after each accepted new maker order requ
 Following the order message, you will receive the `futures-position` message. Since the take order has been filled/partially filled, you will see non-zero values in
 field `posdlt` and field `rcdlt`.  
 
-
     // Contract Position Update 
     {
         "m": "futures-position",
@@ -150,7 +149,7 @@ field `posdlt` and field `rcdlt`.
 You should be able to reconcile these number according to the following:
     
     futures-position:posdlt = order:lq
-    futures-position:rcdlt = order:(lq * lp - lf)
+    futures-position:rcdlt = order:(- lq * lp - lf)
 
 ## Transfer Fund from Cash Account 
 
@@ -183,13 +182,13 @@ Account takeover is the process of clearing all contract and collateral position
         "m":         "futures-collateral",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
         "ac":        "FUTURES",
-        "execId":     132,
+        "execId":     3354,
         "txNum":      1,  // txNum = 1 means this is the second to last message for the takeover process
         "tp":        "Takeover",
         "rid":       "Q3ev819wunOjoVeS", // request Id 
         "data": {
             "a":   "USDT",
-            "sn":  132,
+            "sn":  3354,
             "tb":  "0",
             "ab":  "0",
             "mt":  "0",
@@ -201,13 +200,13 @@ Account takeover is the process of clearing all contract and collateral position
         "m":         "futures-position",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
         "ac":        "FUTURES",
-        "execId":     132,
+        "execId":     3354,
         "txNum":      0, // txNum = 0 means this is the last message for the takeover process
         "tp":        "Takeover",
         "rid":       "Q3ev819wunOjoVeS", // request Id
         "data": {
             "s":      "BTC-PERP",
-            "sn":      132,        // deprecated, use execId 
+            "sn":      3354,        // deprecated, use execId 
             "pos":    "0",         // contract position 
             "rc":     "0",         // reference cost 
             "posn":   "0",         // position notional 
@@ -240,13 +239,13 @@ Below is a sample position injection message:
         "m":         "futures-position",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
         "ac":        "FUTURES",
-        "execId":     171,
+        "execId":     4271,
         "txNum":      0,
         "tp":        "PositionInjectionBLP",
         "rid":       "ZLoC6UFQd4FlFQlS",
         "data": {
             "s":      "BTC-PERP",
-            "sn":      171,         // deprecated, use execId 
+            "sn":      4271,         // deprecated, use execId 
             "pos":    "-0.1405",    // contract position 
             "rc":     "1124",       // reference cost 
             "posn":   -1124",       // position notional 
