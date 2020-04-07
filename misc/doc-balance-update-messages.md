@@ -173,6 +173,57 @@ When you transfer funds into or outof the futures account, you will receive the 
         }
     }
 
+## Futures Pnl Settlement 
+
+Pnl settlement is the process of rolling position Pnl into actual Pnl. During the process, both reference cost of the contract and balance of the collateral (USDT) will change.
+
+    {
+        "m":         "futures-collateral",
+        "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
+        "ac":        "FUTURES",
+        "execId":     413208,
+        "txNum":      1,
+        "tp":        "FuturePnlSettlement",
+        "rid":       "6F31ICSCpd7yYYeG",
+        "data": {
+            "a":   "USDT",     // asset code 
+            "sn":   413208,    // deprected, use execId
+            "tb":  "293.175",  // total balance 
+            "ab":  "293.175",  // available balance. This field is deprecated, for futures collaterals, ab always equals to tb. 
+            "mt":  "0",        // maximum transferrable balance
+            "dlt": "-428.785"  // negative if transferring out of the futures account, positive when adding funds to the futures account
+        }
+    }
+
+    {
+        "m":         "futures-position",
+        "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
+        "ac":        "FUTURES",
+        "execId":     413208,
+        "txNum":      0,
+        "tp":        "FuturePnlSettlement",
+        "rid":       "6F31ICSCpd7yYYeG",
+        "data": {
+            "s":      "BTC-PERP",
+            "sn":      413208,        // deprecated, use execId 
+            "pos":    "0",            // contract position 
+            "rc":     "0",            // reference cost 
+            "posn":   "0",            // position notional 
+            "liq":    "-1",           // Estimated liquidation price
+            "bepx":   "0",            // breakeven price 
+            "pnl":    "0",            // contract position profit/loss in USDT
+            "ucol":   "319.5",        // collateral in use (in USDT)
+            "mbn":    "5804.865",     // maximum notional allowed to buy
+            "msn":    "0",            // maximum notional allowed to sell
+            "mbos":   "0.762994873",  // deprecated, use mbn instead
+            "msos":   "0",            // deprecated, use msn instead
+            "idxPx":  "7102.68",      // index price of the underlying (BTC/USDT in this case)
+            "markPx": "7608",         // market price of the futures contract 
+            "posdlt": "0",            // change in position
+            "rcdlt":  "428.785"       // change in reference cost
+        }
+    }
+
 
 ## Account Takeover 
 
