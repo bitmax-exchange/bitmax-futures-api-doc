@@ -4,18 +4,20 @@
 
 ```json
 {
-    "m": "futures-collateral",
-    "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-    "ac": "FUTURES",
+    "m"     : "futures-collateral",
+    "accountId": "futTw9jxEyfQNLT1FSZdohpF8W9RKGjr",
+    "ac"    : "FUTURES",
+    "execId": 4927094287,
+    "txNum" : 0,
     "data": {
-        "a":  "BTC",
-        "sn": 12503,
-        "tb": "3",
-        "ab": "3",
-        "mt": "3",
-        "id": "2uYRFjUyNPTzygj3",
-        "tp": "TakeOver",
-        "txNum": 0
+        "a": "USDC",
+        "sn": 4927094287,
+        "tb": "10",
+        "ab": "10",
+        "mt": "10",
+        "dlt": "1",
+        "id": "NRAJzzOlXbeJ4tHmTPuD1HmH3b6lFqUg",
+        "tp": "FuturesTransfer"
     }
 }
 ```
@@ -32,13 +34,13 @@ The `data` field is an object with following fields:
  Name     | Type     | Description
 --------- | -------- | ----------------------------------------
 **a**     | `String` | asset code 
-**sn**    | `Long`   | sequence number 
+**sn**    | `Long`   | the same as `execId`. This field will is deprecated and will be removed in the future.
 **tb**    | `String` | total balance 
 **ab**    | `String` | available balance
 **mt**    | `String` | maximum transferrable amount
+**dlt**   | `String` | delta amount, i.e., the amount changed from the previous balance.
 **id**    | `String` | requestId of the record
 **tp**    | `String` | transaction type
-**txNum** | `Int`    | transaction number of the record
 
 ##### tp - Transaction Type
 
@@ -48,9 +50,10 @@ The `tp` field in the message shows the reason of the balance update. Currently 
 * `PositionInjectionBLP` - position injected to Backstop Liquidity Providers (BLPs), you will only see this message if your account is registered as a BLP with the exchange.
 * `PositionInjection` - position injected to regular accounts. 
 * `FundingPayment` - funding payment made to the account.
+* `FuturesTransfer` - fund is transferred in/out. 
 * For other cases, the `tp` is set to an empty string.
 
-##### txNum - Transaction Number
+##### Identifying Balance Update Batches by execId (execution Id) and txNum (Transaction Number)
 
 Some balance updates, such as position injection, are done in batches. The `txNum` can help you identify such updates. For a batch of *n* update messages, the *i*-th message
 will have `txNum = n-i` - that is, the first message will have `txNum = n-1` and the last message will have `txNum = 0`. 
