@@ -1,6 +1,7 @@
-# WebSocket - Futures Position Update Messages 
+# WebSocket - Futures Balance Update Messages 
 
-All balance updates with 
+You will receive all balance updates via WebSocket. All contract position changes (e.g. change in `BTC-PERP` positions) will be streamed by the `futures-position` channel; 
+all collateral changes (e.g. change in `BTC` balance) will be streamed by the `futures-collateral` chanel. 
 
 
 ## Placing a Maker Order
@@ -9,65 +10,69 @@ You will receive the following messages after each accepted new maker order requ
 
     // order details 
     {
-        "m":         "order",
+        "m": "order",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-        "ac":        "FUTURES",  // account category
-        "execId":     97,
-        "txNum":      0,
-        "rid":       "r17155fef5115362614103bbtcpmAHf", // requestId, the same as orderId
+        "ac": "FUTURES",  // account category
+        "execId": 213,    // use this to query transaction details with RESTful APIs
+        "txNum": 0,
+        "rid": "r171562286915362614103bbtcpVuLZ", // requestId, for order message, this is always the same as orderId
         "data": {
-            "sn":       97,            // deprecated, use execId
-            "orderId": "r1715598aefa5362614103bbtcpyqWz", 
+            "sn":       213,           // deprecated, use execId
+            "orderId": "r171562286915362614103bbtcpVuLZ",
             "ot":      "Limit",        // order type
             "s":       "BTC-PERP",     // symbol 
-            "t":        1586279002090, // sending time (UTC)
-            "p":       "7200",         // order price 
-            "q":       "0.1",          // order quantity
+            "t":        1586288035714, // sending time (UTC)
+            "p":       "7500",         // order price 
+            "q":       "0.01",         // order quantity
             "sd":      "Buy",          // side 
             "st":      "Ready",        // status 
             "ap":      "0",            // average filled price
             "cfq":     "0",            // cummulative filled quantity
-            "sp":      "",             // stop price
-            "err":     "",             // error code
+            "sp":       "",            // stop price
+            "err":      "",            // error code
             "cf":      "0",            // cummulative commission (fee)
             "fa":      "USDT",         // fee asset
-            "ei":      "NULL_VAL"      // execution instruction 
-            "pos":     "0.02",         // contract position 
-            "rc":      "-160.104",     // reference cost 
+            "ei":      "NULL_VAL",     // execution instruction 
+            "lq":      "0",            // last filled quantity 
+            "lp":      "0",            // last filled price 
+            "lf":      "0",            // fee/rebate of the last fill
+            "pos":     "0",            // contract position 
+            "rc":      "0"             // reference cost 
         }
     }
 
+Following the order message, you will receive the `futures-position` message. Since the make order hasn't been filled yet, both change in position (`posdlt`) and 
+change in reference cost (`rcdlt`) are 0s. 
 
     // Contract Position Update 
     {
-        "m":         "futures-position",
+        "m": "futures-position",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-        "ac":        "FUTURES",         // account category
-        "execId":     97,               // execution Id
-        "txNum":      0,                // transaction number 
-        "tp":        "ExecutionReport", // transaction type, ExecutionReport indicate this message is triggered by an order
-        "rid":       "r1715598aefa5362614103bbtcpyqWz",
+        "ac": "FUTURES",          // account category 
+        "execId": 213,            // execution Id   
+        "txNum": 0,               // transaction number 
+        "tp": "ExecutionReport",  // transaction type, ExecutionReport indicate this message is triggered by an order
+        "rid": "r171562286915362614103bbtcpVuLZ", // for ExecutionReport, this is the same as the orderId that triggered the balance update
         "data": {
-            "s":      "BTC-PERP",    // symbol
-            "sn":      97,           // deprecated, use execId 
-            "pos":    "0.02",        // contract position 
-            "rc":     "-160.104",    // reference cost 
-            "posn":   "160",         // position notional 
-            "liq":    "-1",          // Estimated liquidation price
-            "bepx":   "8005.2",      // breakeven price 
-            "pnl":    "-0.104",      // contract position profit/loss in USDT
-            "ucol":   "202.4",       // collateral in use (in USDT)
-            "mbn":    "150610.4938", // maximum notional allowed to buy
-            "msn":    "154776.4138", // maximum notional allowed to sell
-            "mbos":   "18.8263",     // deprecated, use mbn instead
-            "msos":   "19.3470",     // deprecated, use msn instead
-            "idxPx":  "7358.345",    // index price of the underlying (BTC/USDT in this case)
-            "markPx": "8000",        // market price of the futures contract 
-            "posdlt": "0",           // change in position
-            "rcdlt":  "0"            // change in reference cost
+            "s":      "BTC-PERP",      // symbol
+            "sn":      213,            // deprecated, use execId 
+            "pos":    "0",             // contract position 
+            "rc":     "0",             // reference cost 
+            "posn":   "0",             // position notional 
+            "liq":    -1",             // Estimated liquidation price
+            "bepx":   "0",             // breakeven price 
+            "pnl":    "0",             // contract position profit/loss in USDT
+            "ucol":   "3.75",          // collateral in use (in USDT)
+            "mbn":    "19725.75",      // maximum notional allowed to buy
+            "msn":    "19800",         // maximum notional allowed to sell
+            "mbos":   "2.46571875",    // deprecated, use mbn instead
+            "msos":   "2.475",         // deprecated, use msn instead
+            "idxPx":  "7319.84612623", // index price of the underlying (BTC/USDT in this case)
+            "markPx": "8000",          // market price of the futures contract 
+            "posdlt": "0",             // change in position
+            "rcdlt":  "0"              // change in reference cost
         }
     }
-
 
 
 ## Placing a Taker Order
@@ -76,65 +81,76 @@ You will receive the following messages after each accepted new maker order requ
 
     // order details 
     {
-        "m":         "order",
+        "m": "order",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-        "ac":        "FUTURES",  // account category
-        "execId":     101,
-        "txNum":      0,
-        "rid":       "r17155fef5115362614103bbtcpmAHf", // request Id, the same as orderId
+        "ac": "FUTURES",
+        "execId": 229,
+        "txNum": 0,
+        "rid": "r1715630020d5362614103bbtcpwxnh",
         "data": {
-            "sn":       101,
-            "orderId": "r17155bc22ef5362614103bbtcp6NnP",
+            "sn":       229,           // deprected, use execId
+            "orderId": "r1715630020d5362614103bbtcpwxnh",
             "ot":      "Limit",        // order type
             "s":       "BTC-PERP",     // symbol 
-            "t":        1586281325478, // sending time (UTC)
+            "t":        1586288919298, // sending time (UTC)
             "p":       "8000",         // order price 
-            "q":       "0.01",         // order quantity
+            "q":       "0.1",          // order quantity
             "sd":      "Buy",          // side 
             "st":      "Filled",       // status 
             "ap":      "8000",         // average filled price
-            "cfq":     "0.01",         // cummulative filled quantity
+            "cfq":     "0.1",          // cummulative filled quantity
             "sp":      "",             // stop price
             "err":     "",             // error code
-            "cf":      "0.052",        // cummulative commission (fee)
+            "cf":      "0.52",         // cummulative commission (fee)
             "fa":      "USDT",         // fee asset
-            "ei":      "NULL_VAL"      // execution instruction 
-            "pos":     "0.04",         // contract position 
-            "rc":      "-320.208",     // reference cost 
+            "ei":      "NULL_VAL",     // execution instruction 
+            "lq":      "0.1",          // last filled quantity 
+            "lp":      "8000",         // last filled price 
+            "lf":      "0.52",         // fee/rebate of the last fill
+            "pos":     "0.1",          // contract position 
+            "rc":      "-800.52"       // reference cost 
         }
     }
+
+
+Following the order message, you will receive the `futures-position` message. Since the take order has been filled/partially filled, you will see non-zero values in
+field `posdlt` and field `rcdlt`.  
 
 
     // Contract Position Update 
     {
-        "m":         "futures-position",
+        "m": "futures-position",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-        "ac":        "FUTURES",
-        "execId":    101,
-        "txNum":     0,
-        "tp":        "ExecutionReport",
-        "rid":       "r17155bc22ef5362614103bbtcp6NnP", // request Id
+        "ac": "FUTURES",
+        "execId": 229,
+        "txNum": 0,
+        "tp": "ExecutionReport",
+        "rid": "r1715630020d5362614103bbtcpwxnh",
         "data": {
             "s":      "BTC-PERP",
-            "sn":      101,            // deprecated, use execId 
-            "pos":    "0.04",          // contract position 
-            "rc":     "-320.208",      // reference cost 
-            "posn":   "320",           // position notional 
-            "liq":    "-1",            // Estimated liquidation price
-            "bepx":   "8005.2",        // breakeven price 
-            "pnl":    "-0.208",        // contract position profit/loss in USDT
-            "ucol":   "210.4",         // collateral in use (in USDT)
-            "mbn":    "150450.03463",  // maximum notional allowed to buy
-            "msn":    "154932.75463",  // maximum notional allowed to sell
-            "mbos":   "18.8062",       // deprecated, use mbn instead
-            "msos":   "19.3665",       // deprecated, use msn instead
-            "idxPx":  "7333.415",      // index price of the underlying (BTC/USDT in this case)
-            "markPx": "8000",          // market price of the futures contract 
-            "posdlt": "0.01",          // change in position
-            "rcdlt":  "79.948"         // change in reference cost
+            "sn":      229,        // deprecated, use execId 
+            "pos":    "0.1",       // contract position 
+            "rc":     "-800.52",   // reference cost 
+            "posn":   "500",       // position notional 
+            "liq":    "-1",        // Estimated liquidation price
+            "bepx":   "8005.2",    // breakeven price 
+            "pnl":    "-300.52",   // contract position profit/loss in USDT
+            "ucol":   "25",        // collateral in use (in USDT)
+            "mbn":    "13354.704", // maximum notional allowed to buy
+            "msn":    "14344.704", // maximum notional allowed to sell
+            "mbos":   "2.6709408", // deprecated, use mbn instead
+            "msos":   "2.8689408", // deprecated, use msn instead
+            "idxPx":  "7328.05",   // index price of the underlying (BTC/USDT in this case)
+            "markPx": "5000",      // market price of the futures contract 
+            "posdlt": "0.1",       // change in position
+            "rcdlt":  "-800.52"    // change in reference cost
         }
     }
 
+You should be able to reconcile these number according to the following:
+    
+    futures-position:posdlt = order:lq
+    futures-position:rcdlt = order:(lq * lp - lf)
 
 ## Transfer Fund from Cash Account 
 
