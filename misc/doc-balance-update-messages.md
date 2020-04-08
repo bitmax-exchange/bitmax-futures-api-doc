@@ -22,6 +22,23 @@ about each batch.
 
 You should only make trade decisions when the last balance update message you have received has `txNum = 0`.
 
+## Reference Cost
+
+Since 2020-04-07, we introduced a special field `rc` (reference cost) to `order` and `futures-position`. Reference value is used by the exchange to calculate the cost of the position. 
+Because futures are unfunded, when you enter/exit a position, you don't spend/earn USDT, the collateral asset, right away. The exchange system book your cost using the reference field 
+and later rolling the profit & loss into your collateral balance. 
+
+An important formula is: 
+
+    Position PnL = Position * Mark Price + Reference Cost
+
+Reference cost changes when you: 
+
+* increase / decrease your contract position via trading;
+* during futures PnL settlemnt process where the position PnL will be (partially) rolled to your collateral;
+* in the takeover process, your position will be set to 0, thus reference cost will also be set to zero; 
+* when you receive injected positions from liquidated client portfolios via `PositionInjectionBLP` (backstop liquidation providers) or `PositionInjection` (top 10 clients)
+
 
 ## Placing a Maker Order
 
@@ -59,6 +76,7 @@ You will receive the following messages after each accepted new maker order requ
             "rc":      "0"             // reference cost 
         }
     }
+
 
 Following the order message, you will receive the `futures-position` message. Since the make order hasn't been filled yet, both change in position (`posdlt`) and 
 change in reference cost (`rcdlt`) are 0s. 
