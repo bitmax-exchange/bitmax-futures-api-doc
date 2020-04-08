@@ -4746,25 +4746,24 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <li><strong>futures-risk</strong> - updates in overall account data</li>
 </ul>
 
-<p>Please refer to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md">WebSocket - Futures Balance Update Messages</a>
-for implementation details.</p>
+<p>Please refer to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md">WebSocket - Futures Balance Update Messages</a> for implementation details.</p>
 <h5 id='tp-transaction-type'>tp - Transaction Type</h5>
-<p>The <code>tp</code> field in the message shows the reason of the balance update. Currently the following messages are supported:</p>
+<p>The <code>tp</code> field in the message shows the reason of the balance update. Below are some common :</p>
 
 <ul>
+<li><code>ExecutionUpdate</code> - message about order status update</li>
 <li><code>TakeOver</code> - the account has been taken over due to hightened risk exposure.</li>
 <li><code>PositionInjectionBLP</code> - position injected to Backstop Liquidity Providers (BLPs), you will only see this message if your account is registered as a BLP with the exchange.</li>
 <li><code>PositionInjection</code> - position injected to regular accounts. </li>
 <li><code>FundingPayment</code> - funding payment made to the account.</li>
 <li><code>FuturesPnlSettlement</code> - rolling position PnL into realized PnL</li>
 <li><code>FuturesTransfer</code> - fund is transferred in/out. </li>
-<li>For other cases, the <code>tp</code> is set to an empty string.</li>
 </ul>
 <h5 id='identifying-balance-update-batches-by-execid-execution-id-and-txnum-transaction-number'>Identifying Balance Update Batches by execId (execution Id) and txNum (Transaction Number)</h5>
 <p>Some balance updates, such as position injection, are done in batches. The <code>txNum</code> can help you identify such updates. For a batch of <em>n</em> update messages, the <em>i</em>-th message
 will have <code>txNum = n-i</code> - that is, the first message will have <code>txNum = n-1</code> and the last message will have <code>txNum = 0</code>. </p>
 <h4 id='retrieve-transaciton-details'>Retrieve Transaciton Details</h4>
-<p>You can use <code>sn</code> to retrieve balance update details using the RESTful API. See <a href="#lookup-balance-update-records-by-id">Lookup Balance Update Records by Id</a></p>
+<p>You can use <code>execId</code> to retrieve balance update details using the RESTful API. See <a href="#lookup-balance-update-records-by-id">Lookup Balance Update Records by Id</a></p>
 <h3 id='channel-order'>Channel: Order</h3>
 <blockquote>
 <p>Order Message</p>
