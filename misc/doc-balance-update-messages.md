@@ -1,7 +1,26 @@
 # WebSocket - Futures Balance Update Messages 
 
-You will receive all balance updates via WebSocket. All contract position changes (e.g. change in `BTC-PERP` positions) will be streamed by the `futures-position` channel; 
-all collateral changes (e.g. change in `BTC` balance) will be streamed by the `futures-collateral` chanel. 
+You will receive all balance updates via WebSocket. Currently there are three types of balance update messeages:
+
+* All contract position changes (e.g. change in `BTC-PERP` positions) will be streamed by the `futures-position` channel; 
+* All collateral changes (e.g. change in `BTC` balance) will be streamed by the `futures-collateral` channel;
+* Order status update will be streamed by the `order` channel. 
+
+Once you are subscribed to the `order:futures` channel, you will receive all three types of messages. 
+
+
+## execId and txNum 
+
+Some balance updates are done in batches. For instance, `FuturesPnlSettlemnt` will change both of you contract position and the collateral balance. You will receive two 
+consecutive messages. You should consumer both messages before making any trade decision. `txNum` help you to identify such batches and `execId` helps you retrieve information
+about each batch. 
+
+* `execId` is of type `Long` and is ever increasing. Within each account, it is the unique identifier for each balance update batch. You can use it to retrieve full details 
+  of all updates within the same transaction via RESTful API. 
+* `txNum` is of type `Short` and is ever decreasing. For a batch of `n` balance updates, the first message will have `txNum = n-1`, the second message will have `txNum = n-2`, and 
+  the last message will have `txNum = 0`. 
+
+You should only make trade decisions when the last balance update message you have received has `txNum = 0`.
 
 
 ## Placing a Maker Order
@@ -14,7 +33,7 @@ You will receive the following messages after each accepted new maker order requ
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
         "ac": "FUTURES",  // account category
         "execId": 213,    // use this to query transaction details with RESTful APIs
-        "txNum": 0,
+        "txNum": 0,       // order messages will always have txNum = 0
         "rid": "r171562286915362614103bbtcpVuLZ", // requestId, for order message, this is always the same as orderId
         "data": {
             "sn":       213,           // deprecated, use execId
@@ -83,10 +102,10 @@ You will receive the following messages after each accepted new taker order requ
     {
         "m": "order",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-        "ac": "FUTURES",
-        "execId": 229,
-        "txNum": 0,
-        "rid": "r1715630020d5362614103bbtcpwxnh",
+        "ac":     "FUTURES",  // account category
+        "execId":  229,       // use this to query transaction details with RESTful APIs
+        "txNum":   0,         // order messages will always have txNum = 0
+        "rid":    "r1715630020d5362614103bbtcpwxnh",
         "data": {
             "sn":       229,           // deprected, use execId
             "orderId": "r1715630020d5362614103bbtcpwxnh",
@@ -118,13 +137,13 @@ field `posdlt` and field `rcdlt`.
 
     // Contract Position Update 
     {
-        "m": "futures-position",
+        "m":         "futures-position",
         "accountId": "futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q",
-        "ac": "FUTURES",
-        "execId": 229,
-        "txNum": 0,
-        "tp": "ExecutionReport",
-        "rid": "r1715630020d5362614103bbtcpwxnh",
+        "ac":        "FUTURES",
+        "execId":     229,
+        "txNum":      0,
+        "tp":        "ExecutionReport",
+        "rid":       "r1715630020d5362614103bbtcpwxnh",
         "data": {
             "s":      "BTC-PERP",
             "sn":      229,        // deprecated, use execId 
