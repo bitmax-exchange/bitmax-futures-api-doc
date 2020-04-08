@@ -22,14 +22,14 @@ Once subscribed, you will start to receive messages from all the following chann
 * **futures-position** - updates in contract position along with other contract-specifc data 
 * **futures-risk** - updates in overall account data
 
-Please refer to [WebSocket - Futures Balance Update Messages](https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md)
-for implementation details.
+Please refer to [WebSocket - Futures Balance Update Messages](https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md) for implementation details.
 
 
 ##### tp - Transaction Type
 
-The `tp` field in the message shows the reason of the balance update. Currently the following messages are supported:
+The `tp` field in the message shows the reason of the balance update. Below are some common :
 
+* `ExecutionUpdate` - message about order status update
 * `TakeOver` - the account has been taken over due to hightened risk exposure.
 * `PositionInjectionBLP` - position injected to Backstop Liquidity Providers (BLPs), you will only see this message if your account is registered as a BLP with the exchange.
 * `PositionInjection` - position injected to regular accounts. 
