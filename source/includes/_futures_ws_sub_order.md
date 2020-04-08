@@ -36,7 +36,6 @@ The `tp` field in the message shows the reason of the balance update. Below are 
 * `FundingPayment` - funding payment made to the account.
 * `FuturesPnlSettlement` - rolling position PnL into realized PnL
 * `FuturesTransfer` - fund is transferred in/out. 
-* For other cases, the `tp` is set to an empty string.
 
 ##### Identifying Balance Update Batches by execId (execution Id) and txNum (Transaction Number)
 
@@ -45,4 +44,4 @@ will have `txNum = n-i` - that is, the first message will have `txNum = n-1` and
 
 #### Retrieve Transaciton Details 
 
-You can use `sn` to retrieve balance update details using the RESTful API. See [Lookup Balance Update Records by Id](#lookup-balance-update-records-by-id)
+You can use `execId` to retrieve balance update details using the RESTful API. See [Lookup Balance Update Records by Id](#lookup-balance-update-records-by-id)
