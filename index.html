@@ -4745,6 +4745,26 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <li><strong>futures-position</strong> - updates in contract position along with other contract-specifc data </li>
 <li><strong>futures-risk</strong> - updates in overall account data</li>
 </ul>
+
+<p>Please refer to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md">WebSocket - Futures Balance Update Messages</a>
+for implementation details.</p>
+<h5 id='tp-transaction-type'>tp - Transaction Type</h5>
+<p>The <code>tp</code> field in the message shows the reason of the balance update. Currently the following messages are supported:</p>
+
+<ul>
+<li><code>TakeOver</code> - the account has been taken over due to hightened risk exposure.</li>
+<li><code>PositionInjectionBLP</code> - position injected to Backstop Liquidity Providers (BLPs), you will only see this message if your account is registered as a BLP with the exchange.</li>
+<li><code>PositionInjection</code> - position injected to regular accounts. </li>
+<li><code>FundingPayment</code> - funding payment made to the account.</li>
+<li><code>FuturesPnlSettlement</code> - rolling position PnL into realized PnL</li>
+<li><code>FuturesTransfer</code> - fund is transferred in/out. </li>
+<li>For other cases, the <code>tp</code> is set to an empty string.</li>
+</ul>
+<h5 id='identifying-balance-update-batches-by-execid-execution-id-and-txnum-transaction-number'>Identifying Balance Update Batches by execId (execution Id) and txNum (Transaction Number)</h5>
+<p>Some balance updates, such as position injection, are done in batches. The <code>txNum</code> can help you identify such updates. For a batch of <em>n</em> update messages, the <em>i</em>-th message
+will have <code>txNum = n-i</code> - that is, the first message will have <code>txNum = n-1</code> and the last message will have <code>txNum = 0</code>. </p>
+<h4 id='retrieve-transaciton-details'>Retrieve Transaciton Details</h4>
+<p>You can use <code>sn</code> to retrieve balance update details using the RESTful API. See <a href="#lookup-balance-update-records-by-id">Lookup Balance Update Records by Id</a></p>
 <h3 id='channel-order'>Channel: Order</h3>
 <blockquote>
 <p>Order Message</p>
@@ -4752,24 +4772,32 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w">     </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">account</span><span class="w"> </span><span class="err">category</span><span class="w">
+    </span><span class="s2">"execId"</span><span class="p">:</span><span class="w">  </span><span class="mi">229</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">transaction</span><span class="w"> </span><span class="err">details</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">RESTful</span><span class="w"> </span><span class="err">APIs</span><span class="w">
+    </span><span class="s2">"txNum"</span><span class="p">:</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">messages</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">always</span><span class="w"> </span><span class="err">have</span><span class="w"> </span><span class="err">txNum</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="s2">"rid"</span><span class="p">:</span><span class="w">    </span><span class="s2">"r1715630020d5362614103bbtcpwxnh"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w">      </span><span class="mi">12231</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a16fd950062a5362614103bbtcpV3DE"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ot"</span><span class="p">:</span><span class="w">      </span><span class="s2">"Limit"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"s"</span><span class="p">:</span><span class="w">       </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"t"</span><span class="p">:</span><span class="w">       </span><span class="mi">1579898898603</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"p"</span><span class="p">:</span><span class="w">       </span><span class="s2">"6000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"q"</span><span class="p">:</span><span class="w">       </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sd"</span><span class="p">:</span><span class="w">      </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"st"</span><span class="p">:</span><span class="w">      </span><span class="s2">"New"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ap"</span><span class="p">:</span><span class="w">      </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cfq"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sp"</span><span class="p">:</span><span class="w">      </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err"</span><span class="p">:</span><span class="w">     </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cf"</span><span class="p">:</span><span class="w">      </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fa"</span><span class="p">:</span><span class="w">      </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ei"</span><span class="p">:</span><span class="w">      </span><span class="s2">"NULL_VAL"</span><span class="w">
+        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w">       </span><span class="mi">229</span><span class="p">,</span><span class="w">           </span><span class="err">//</span><span class="w"> </span><span class="err">deprected</span><span class="p">,</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">execId</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"r1715630020d5362614103bbtcpwxnh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ot"</span><span class="p">:</span><span class="w">      </span><span class="s2">"Limit"</span><span class="p">,</span><span class="w">        </span><span class="err">//</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">type</span><span class="w">
+        </span><span class="s2">"s"</span><span class="p">:</span><span class="w">       </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">symbol</span><span class="w"> 
+        </span><span class="s2">"t"</span><span class="p">:</span><span class="w">        </span><span class="mi">1586288919298</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">sending</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">(UTC)</span><span class="w">
+        </span><span class="s2">"p"</span><span class="p">:</span><span class="w">       </span><span class="s2">"8000"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">price</span><span class="w"> 
+        </span><span class="s2">"q"</span><span class="p">:</span><span class="w">       </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">quantity</span><span class="w">
+        </span><span class="s2">"sd"</span><span class="p">:</span><span class="w">      </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">side</span><span class="w"> 
+        </span><span class="s2">"st"</span><span class="p">:</span><span class="w">      </span><span class="s2">"Filled"</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">status</span><span class="w"> 
+        </span><span class="s2">"ap"</span><span class="p">:</span><span class="w">      </span><span class="s2">"8000"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">average</span><span class="w"> </span><span class="err">filled</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"cfq"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">cummulative</span><span class="w"> </span><span class="err">filled</span><span class="w"> </span><span class="err">quantity</span><span class="w">
+        </span><span class="s2">"sp"</span><span class="p">:</span><span class="w">      </span><span class="s2">""</span><span class="p">,</span><span class="w">             </span><span class="err">//</span><span class="w"> </span><span class="err">stop</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"err"</span><span class="p">:</span><span class="w">     </span><span class="s2">""</span><span class="p">,</span><span class="w">             </span><span class="err">//</span><span class="w"> </span><span class="err">error</span><span class="w"> </span><span class="err">code</span><span class="w">
+        </span><span class="s2">"cf"</span><span class="p">:</span><span class="w">      </span><span class="s2">"0.52"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">cummulative</span><span class="w"> </span><span class="err">commission</span><span class="w"> </span><span class="err">(fee)</span><span class="w">
+        </span><span class="s2">"fa"</span><span class="p">:</span><span class="w">      </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">asset</span><span class="w">
+        </span><span class="s2">"ei"</span><span class="p">:</span><span class="w">      </span><span class="s2">"NULL_VAL"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">execution</span><span class="w"> </span><span class="err">instruction</span><span class="w"> 
+        </span><span class="s2">"lq"</span><span class="p">:</span><span class="w">      </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">last</span><span class="w"> </span><span class="err">filled</span><span class="w"> </span><span class="err">quantity</span><span class="w"> 
+        </span><span class="s2">"lp"</span><span class="p">:</span><span class="w">      </span><span class="s2">"8000"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">last</span><span class="w"> </span><span class="err">filled</span><span class="w"> </span><span class="err">price</span><span class="w"> 
+        </span><span class="s2">"lf"</span><span class="p">:</span><span class="w">      </span><span class="s2">"0.52"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">fee/rebate</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">last</span><span class="w"> </span><span class="err">fill</span><span class="w">
+        </span><span class="s2">"pos"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">contract</span><span class="w"> </span><span class="err">position</span><span class="w"> 
+        </span><span class="s2">"rc"</span><span class="p">:</span><span class="w">      </span><span class="s2">"-800.52"</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">reference</span><span class="w"> </span><span class="err">cost</span><span class="w"> 
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='channel'>Channel</h4>
@@ -4787,12 +4815,12 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <tr>
 <td><strong>sn</strong></td>
 <td><code>Long</code></td>
-<td>sequence number</td>
+<td>deprecated, use execId</td>
 </tr>
 <tr>
 <td><strong>orderId</strong></td>
 <td><code>String</code></td>
-<td>order ID</td>
+<td>order Id</td>
 </tr>
 <tr>
 <td><strong>ot</strong></td>
@@ -4807,7 +4835,7 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <tr>
 <td><strong>t</strong></td>
 <td><code>Long</code></td>
-<td>timestamp</td>
+<td>sending time (UTC)</td>
 </tr>
 <tr>
 <td><strong>p</strong></td>
@@ -4822,7 +4850,7 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <tr>
 <td><strong>sd</strong></td>
 <td><code>String</code></td>
-<td>order side</td>
+<td>side</td>
 </tr>
 <tr>
 <td><strong>st</strong></td>
@@ -4864,30 +4892,62 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td><code>String</code></td>
 <td>execution instruction</td>
 </tr>
+<tr>
+<td><strong>lq</strong></td>
+<td><code>String</code></td>
+<td>last filled quantity</td>
+</tr>
+<tr>
+<td><strong>lp</strong></td>
+<td><code>String</code></td>
+<td>last filled price</td>
+</tr>
+<tr>
+<td><strong>lf</strong></td>
+<td><code>String</code></td>
+<td>fee/rebate of the last fill</td>
+</tr>
+<tr>
+<td><strong>pos</strong></td>
+<td><code>String</code></td>
+<td>contract position</td>
+</tr>
+<tr>
+<td><strong>rc</strong></td>
+<td><code>String</code></td>
+<td>reference cost</td>
+</tr>
 </tbody></table>
 <h3 id='channel-contract-position-updates'>Channel: Contract Position Updates</h3>
 <blockquote>
 <p>Futures Position (per-symbol data)</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futures-position"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futQtyfq8XLAA9kcf19h8bXHbAwwoqDo"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w">         </span><span class="s2">"futures-position"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w">        </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"execId"</span><span class="p">:</span><span class="w">     </span><span class="mi">413208</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"txNum"</span><span class="p">:</span><span class="w">      </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tp"</span><span class="p">:</span><span class="w">        </span><span class="s2">"FuturePnlSettlement"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rid"</span><span class="p">:</span><span class="w">       </span><span class="s2">"6F31ICSCpd7yYYeG"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"s"</span><span class="p">:</span><span class="w">      </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w">      </span><span class="mi">4313059355</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pos"</span><span class="p">:</span><span class="w">    </span><span class="s2">"0.0012"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"posn"</span><span class="p">:</span><span class="w">   </span><span class="s2">"9.383626273"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liq"</span><span class="p">:</span><span class="w">    </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bepx"</span><span class="p">:</span><span class="w">   </span><span class="s2">"7921.3512875"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pnl"</span><span class="p">:</span><span class="w">    </span><span class="s2">"-0.121995271"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ucol"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.938362627"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mbn"</span><span class="p">:</span><span class="w">    </span><span class="s2">"113.114849969"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"msn"</span><span class="p">:</span><span class="w">    </span><span class="s2">"131.69442999"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mbos"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.01446539"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"msos"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.01684139"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"idxPx"</span><span class="p">:</span><span class="w">  </span><span class="s2">"7811.290850445"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"markPx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7819.68856122"</span><span class="w">
+        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w">      </span><span class="mi">413208</span><span class="p">,</span><span class="w">        </span><span class="err">//</span><span class="w"> </span><span class="err">deprecated</span><span class="p">,</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">execId</span><span class="w"> 
+        </span><span class="s2">"pos"</span><span class="p">:</span><span class="w">    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">contract</span><span class="w"> </span><span class="err">position</span><span class="w"> 
+        </span><span class="s2">"rc"</span><span class="p">:</span><span class="w">     </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">reference</span><span class="w"> </span><span class="err">cost</span><span class="w"> 
+        </span><span class="s2">"posn"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">position</span><span class="w"> </span><span class="err">notional</span><span class="w"> 
+        </span><span class="s2">"liq"</span><span class="p">:</span><span class="w">    </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">           </span><span class="err">//</span><span class="w"> </span><span class="err">Estimated</span><span class="w"> </span><span class="err">liquidation</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"bepx"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">breakeven</span><span class="w"> </span><span class="err">price</span><span class="w"> 
+        </span><span class="s2">"pnl"</span><span class="p">:</span><span class="w">    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">contract</span><span class="w"> </span><span class="err">position</span><span class="w"> </span><span class="err">profit/loss</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">USDT</span><span class="w">
+        </span><span class="s2">"ucol"</span><span class="p">:</span><span class="w">   </span><span class="s2">"319.5"</span><span class="p">,</span><span class="w">        </span><span class="err">//</span><span class="w"> </span><span class="err">collateral</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">(in</span><span class="w"> </span><span class="err">USDT)</span><span class="w">
+        </span><span class="s2">"mbn"</span><span class="p">:</span><span class="w">    </span><span class="s2">"5804.865"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">maximum</span><span class="w"> </span><span class="err">notional</span><span class="w"> </span><span class="err">allowed</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">buy</span><span class="w">
+        </span><span class="s2">"msn"</span><span class="p">:</span><span class="w">    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">maximum</span><span class="w"> </span><span class="err">notional</span><span class="w"> </span><span class="err">allowed</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">sell</span><span class="w">
+        </span><span class="s2">"mbos"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0.762994873"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">deprecated</span><span class="p">,</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">mbn</span><span class="w"> </span><span class="err">instead</span><span class="w">
+        </span><span class="s2">"msos"</span><span class="p">:</span><span class="w">   </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">deprecated</span><span class="p">,</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">msn</span><span class="w"> </span><span class="err">instead</span><span class="w">
+        </span><span class="s2">"idxPx"</span><span class="p">:</span><span class="w">  </span><span class="s2">"7102.68"</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">index</span><span class="w"> </span><span class="err">price</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">underlying</span><span class="w"> </span><span class="err">(BTC/USDT</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">case)</span><span class="w">
+        </span><span class="s2">"markPx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7608"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">market</span><span class="w"> </span><span class="err">price</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">futures</span><span class="w"> </span><span class="err">contract</span><span class="w"> 
+        </span><span class="s2">"posdlt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">change</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">position</span><span class="w">
+        </span><span class="s2">"rcdlt"</span><span class="p">:</span><span class="w">  </span><span class="s2">"428.785"</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">change</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">reference</span><span class="w"> </span><span class="err">cost</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='channel'>Channel</h4>
@@ -4905,12 +4965,12 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <tr>
 <td><strong>s</strong></td>
 <td><code>String</code></td>
-<td>contract symbol</td>
+<td>symbol</td>
 </tr>
 <tr>
 <td><strong>sn</strong></td>
 <td><code>Long</code></td>
-<td>sequence number</td>
+<td>deprecated, use execId instead</td>
 </tr>
 <tr>
 <td><strong>pos</strong></td>
@@ -4918,19 +4978,24 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td>contract position</td>
 </tr>
 <tr>
+<td><strong>rc</strong></td>
+<td><code>String</code></td>
+<td>reference cost</td>
+</tr>
+<tr>
 <td><strong>posn</strong></td>
 <td><code>String</code></td>
-<td>contract position notional value in USDT</td>
+<td>position notional</td>
 </tr>
 <tr>
 <td><strong>liq</strong></td>
 <td><code>String</code></td>
-<td>estimated liquidation price</td>
+<td>Estimated liquidation price</td>
 </tr>
 <tr>
 <td><strong>bepx</strong></td>
 <td><code>String</code></td>
-<td>break-even price</td>
+<td>breakeven price</td>
 </tr>
 <tr>
 <td><strong>pnl</strong></td>
@@ -4943,16 +5008,6 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td>collateral in use (in USDT)</td>
 </tr>
 <tr>
-<td><strong>mbos</strong></td>
-<td><code>String</code></td>
-<td>maximum quantity allowed to buy (deprecated, use <strong>mbn</strong> instead)</td>
-</tr>
-<tr>
-<td><strong>msos</strong></td>
-<td><code>String</code></td>
-<td>maximum quantity allowed to sell (deprecated, use <strong>msn</strong> instead)</td>
-</tr>
-<tr>
 <td><strong>mbn</strong></td>
 <td><code>String</code></td>
 <td>maximum notional allowed to buy</td>
@@ -4963,24 +5018,34 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <td>maximum notional allowed to sell</td>
 </tr>
 <tr>
+<td><strong>mbos</strong></td>
+<td><code>String</code></td>
+<td>deprecated, use mbn instead</td>
+</tr>
+<tr>
+<td><strong>msos</strong></td>
+<td><code>String</code></td>
+<td>deprecated, use msn instead</td>
+</tr>
+<tr>
 <td><strong>idxPx</strong></td>
 <td><code>String</code></td>
-<td>underlying index price</td>
+<td>index price of the underlying (BTC/USDT in this case)</td>
 </tr>
 <tr>
 <td><strong>markPx</strong></td>
 <td><code>String</code></td>
-<td>contract mark price</td>
+<td>market price of the futures contract</td>
 </tr>
 <tr>
-<td><strong>tp</strong></td>
-<td><code>Optional[String]</code></td>
-<td>transaction type</td>
+<td><strong>posdlt</strong></td>
+<td><code>String</code></td>
+<td>change in position</td>
 </tr>
 <tr>
-<td><strong>id</strong></td>
-<td><code>Optional[String]</code></td>
-<td>request Id</td>
+<td><strong>rcdlt</strong></td>
+<td><code>String</code></td>
+<td>change in reference cost</td>
 </tr>
 </tbody></table>
 <h3 id='channel-futures-collateral-updates'>Channel: Futures Collateral Updates</h3>
@@ -4988,18 +5053,20 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <p>Futures Collateral </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futures-collateral"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">"futures-collateral"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futZrwfTaL4Py6M05X0SnJ9QFIuj6k2Q"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ac"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"execId"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"txNum"</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tp"</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="s2">"FuturesTransfer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rid"</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">"t4t3h0CkIMx91zMzNzWuzmpUcQx4aCvE"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w"> </span><span class="err">Id</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"a"</span><span class="p">:</span><span class="w">  </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"sn"</span><span class="p">:</span><span class="w"> </span><span class="mi">12503</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2uYRFjUyNPTzygj3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TakeOver"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"txNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="s2">"a"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">asset</span><span class="w"> </span><span class="err">code</span><span class="w"> 
+        </span><span class="s2">"sn"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">deprected</span><span class="p">,</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">execId</span><span class="w">
+        </span><span class="s2">"tb"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"196.344"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">balance</span><span class="w"> 
+        </span><span class="s2">"ab"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"196.344"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">available</span><span class="w"> </span><span class="err">balance.</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">field</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">deprecated</span><span class="p">,</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">futures</span><span class="w"> </span><span class="err">collaterals</span><span class="p">,</span><span class="w"> </span><span class="err">ab</span><span class="w"> </span><span class="err">always</span><span class="w"> </span><span class="err">equals</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">tb.</span><span class="w"> 
+        </span><span class="s2">"mt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">maximum</span><span class="w"> </span><span class="err">transferrable</span><span class="w"> </span><span class="err">balance</span><span class="w">
+        </span><span class="s2">"dlt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-10"</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">negative</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">transferring</span><span class="w"> </span><span class="err">out</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">futures</span><span class="w"> </span><span class="err">account</span><span class="p">,</span><span class="w"> </span><span class="err">positive</span><span class="w"> </span><span class="err">when</span><span class="w"> </span><span class="err">adding</span><span class="w"> </span><span class="err">funds</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">futures</span><span class="w"> </span><span class="err">account</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='channel'>Channel</h4>
@@ -5022,7 +5089,7 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <tr>
 <td><strong>sn</strong></td>
 <td><code>Long</code></td>
-<td>sequence number</td>
+<td>deprected, use <code>execId</code> instead</td>
 </tr>
 <tr>
 <td><strong>tb</strong></td>
@@ -5032,44 +5099,19 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <tr>
 <td><strong>ab</strong></td>
 <td><code>String</code></td>
-<td>available balance</td>
+<td>available balance. This field is deprecated, for futures collaterals, ab always equals to tb.</td>
 </tr>
 <tr>
 <td><strong>mt</strong></td>
 <td><code>String</code></td>
-<td>maximum transferrable amount</td>
+<td>maximum transferrable balance</td>
 </tr>
 <tr>
-<td><strong>id</strong></td>
+<td><strong>dlt</strong></td>
 <td><code>String</code></td>
-<td>requestId of the record</td>
-</tr>
-<tr>
-<td><strong>tp</strong></td>
-<td><code>String</code></td>
-<td>transaction type</td>
-</tr>
-<tr>
-<td><strong>txNum</strong></td>
-<td><code>Int</code></td>
-<td>transaction number of the record</td>
+<td>negative if transferring out of the futures account, positive when adding funds to the futures account</td>
 </tr>
 </tbody></table>
-<h5 id='tp-transaction-type'>tp - Transaction Type</h5>
-<p>The <code>tp</code> field in the message shows the reason of the balance update. Currently the following messages are supported:</p>
-
-<ul>
-<li><code>TakeOver</code> - the account has been taken over due to hightened risk exposure.</li>
-<li><code>PositionInjectionBLP</code> - position injected to Backstop Liquidity Providers (BLPs), you will only see this message if your account is registered as a BLP with the exchange.</li>
-<li><code>PositionInjection</code> - position injected to regular accounts. </li>
-<li><code>FundingPayment</code> - funding payment made to the account.</li>
-<li>For other cases, the <code>tp</code> is set to an empty string.</li>
-</ul>
-<h5 id='txnum-transaction-number'>txNum - Transaction Number</h5>
-<p>Some balance updates, such as position injection, are done in batches. The <code>txNum</code> can help you identify such updates. For a batch of <em>n</em> update messages, the <em>i</em>-th message
-will have <code>txNum = n-i</code> - that is, the first message will have <code>txNum = n-1</code> and the last message will have <code>txNum = 0</code>. </p>
-<h4 id='retrieve-transaciton-details'>Retrieve Transaciton Details</h4>
-<p>You can use <code>sn</code> to retrieve balance update details using the RESTful API. See <a href="#lookup-balance-update-records-by-id">Lookup Balance Update Records by Id</a></p>
 <h3 id='channel-futures-account-risk'>Channel: Futures Account Risk</h3>
 <blockquote>
 <p>Futures Risk (overall account data)</p>
