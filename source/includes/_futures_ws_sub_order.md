@@ -15,12 +15,31 @@ To unsubscribe:
 In both messages above, the `id` field is optional.
 
 
-Once subscribed, you will start to receive messages from all the following channels:
+Once subscribed, you will start to receive balance update messages from all the following channels:
 
 * **order** - order updates 
 * **futures-collateral** - updates in collateral balance 
 * **futures-position** - updates in contract position along with other contract-specifc data 
-* **futures-risk** - updates in overall account data
+
+In addition, you will also receive **futures-risk** with information about the overall account risk profile. 
+
+The general format for the three balance update messages is:
+
+
+<div class="center-column"></div>
+```json
+    {
+        "m": "order",  // order, futures-position, or futures-collateral
+        "accountId": "futNodf11Cos9iKQXAaE2Oukctj3jdMA",
+        "ac":     "FUTURES",  // account category
+        "execId":  229,       // use this to query transaction details with RESTful APIs
+        "txNum":   0,         // transaction number used to identify balance update batches
+        "rid":    "r1715630020d5362614103bbtcpwxnh",
+        "data": {
+            ... // data fields 
+    }
+```
+
 
 Please refer to [WebSocket - Futures Balance Update Messages](https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md) for implementation details.
 

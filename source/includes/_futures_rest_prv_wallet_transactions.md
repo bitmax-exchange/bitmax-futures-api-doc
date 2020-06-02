@@ -36,7 +36,7 @@ You need view permission to access this API.
 
 #### HTTP Request 
 
-`GET /api/pro/wallet/transactions`
+`GET /api/pro/v1/wallet/transactions`
 
 You don't need to specify `<account-group>` for this API.
 
