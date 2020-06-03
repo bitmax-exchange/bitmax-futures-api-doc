@@ -205,13 +205,13 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar.png" alt="" />
       </span>
     </a>
     <header>
       <div class="flexbox">
         <a href="https://bitmax.io">
-          <img src="images/logo.png" class="logo" alt="Logo" />
+          <img src="images/logo.png" class="logo" alt="" />
         </a>
         <div class="navbox">
             <span class="navsell navtab"><a href="https://bitmax-exchange.github.io/bitmax-pro-api/#bitmax-pro-api-documentation">Cash/Margin APIs</a></span>
@@ -2194,7 +2194,7 @@ to you account. </p>
 <h4 id='permissions'>Permissions</h4>
 <p>You need view permission to access this API.</p>
 <h4 id='http-request'>HTTP Request</h4>
-<p><code>GET /api/pro/wallet/transactions</code></p>
+<p><code>GET /api/pro/v1/wallet/transactions</code></p>
 
 <p>You don&#39;t need to specify <code>&lt;account-group&gt;</code> for this API.</p>
 <h4 id='request-parameters'>Request Parameters</h4>
@@ -4737,15 +4737,30 @@ you can use to update the order book snapshot. In the message, <code>price</code
 
 <p>In both messages above, the <code>id</code> field is optional.</p>
 
-<p>Once subscribed, you will start to receive messages from all the following channels:</p>
+<p>Once subscribed, you will start to receive balance update messages from all the following channels:</p>
 
 <ul>
 <li><strong>order</strong> - order updates </li>
 <li><strong>futures-collateral</strong> - updates in collateral balance </li>
 <li><strong>futures-position</strong> - updates in contract position along with other contract-specifc data </li>
-<li><strong>futures-risk</strong> - updates in overall account data</li>
 </ul>
 
+<p>In addition, you will also receive <strong>futures-risk</strong> with information about the overall account risk profile. </p>
+
+<p>The general format for the three balance update messages is:</p>
+
+<div class="center-column"></div>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">order</span><span class="p">,</span><span class="w"> </span><span class="err">futures-position</span><span class="p">,</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">futures-collateral</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futNodf11Cos9iKQXAaE2Oukctj3jdMA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ac"</span><span class="p">:</span><span class="w">     </span><span class="s2">"FUTURES"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">account</span><span class="w"> </span><span class="err">category</span><span class="w">
+        </span><span class="s2">"execId"</span><span class="p">:</span><span class="w">  </span><span class="mi">229</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">transaction</span><span class="w"> </span><span class="err">details</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">RESTful</span><span class="w"> </span><span class="err">APIs</span><span class="w">
+        </span><span class="s2">"txNum"</span><span class="p">:</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">transaction</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">identify</span><span class="w"> </span><span class="err">balance</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">batches</span><span class="w">
+        </span><span class="s2">"rid"</span><span class="p">:</span><span class="w">    </span><span class="s2">"r1715630020d5362614103bbtcpwxnh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">fields</span><span class="w"> 
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Please refer to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-doc/blob/master/misc/doc-balance-update-messages.md">WebSocket - Futures Balance Update Messages</a> for implementation details.</p>
 <h5 id='tp-transaction-type'>tp - Transaction Type</h5>
 <p>The <code>tp</code> field in the message shows the reason of the balance update. Below are some common :</p>
