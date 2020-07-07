@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <style media="screen">
+    <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .gh {
@@ -146,36 +146,47 @@
 }
 .highlight .vc {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .nv, .highlight .vm {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
+  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
-}
-.highlight .nl {
-  color: #f92672;
+  background-color: #272822;
 }
 .highlight .ow {
   color: #f92672;
@@ -196,93 +207,9 @@
   color: #f92672;
 }
     </style>
-    <style media="print">
-      * {
-        -webkit-transition:none!important;
-        transition:none!important;
-      }
-      .highlight table td { padding: 5px; }
-.highlight table pre { margin: 0; }
-.highlight, .highlight .w {
-  color: #586e75;
-}
-.highlight .err {
-  color: #002b36;
-  background-color: #dc322f;
-}
-.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
-  color: #657b83;
-}
-.highlight .cp {
-  color: #b58900;
-}
-.highlight .nt {
-  color: #b58900;
-}
-.highlight .o, .highlight .ow {
-  color: #93a1a1;
-}
-.highlight .p, .highlight .pi {
-  color: #93a1a1;
-}
-.highlight .gi {
-  color: #859900;
-}
-.highlight .gd {
-  color: #dc322f;
-}
-.highlight .gh {
-  color: #268bd2;
-  background-color: #002b36;
-  font-weight: bold;
-}
-.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #6c71c4;
-}
-.highlight .kc {
-  color: #cb4b16;
-}
-.highlight .kt {
-  color: #cb4b16;
-}
-.highlight .kd {
-  color: #cb4b16;
-}
-.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #859900;
-}
-.highlight .sr {
-  color: #2aa198;
-}
-.highlight .si {
-  color: #d33682;
-}
-.highlight .se {
-  color: #d33682;
-}
-.highlight .nn {
-  color: #b58900;
-}
-.highlight .nc {
-  color: #b58900;
-}
-.highlight .no {
-  color: #b58900;
-}
-.highlight .na {
-  color: #268bd2;
-}
-.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
-  color: #859900;
-}
-.highlight .ss {
-  color: #859900;
-}
-    </style>
-    <link href="stylesheets/screen-6e157391.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-520bc672.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-e9bde216.js"></script>
-
+      <script src="javascripts/all-53b01214.js"></script>
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;java&quot;]">
@@ -302,7 +229,7 @@
             <span class="navsell navtab"><a href="https://bitmax-exchange.github.io/bitmax-futures-api-doc/#bitmax-futures-trading-api-documentation" class="current">Futures APIs</a></span>
         </div>
       </div>
-    </header> 
+    </header>
     <div class="toc-wrapper">
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
@@ -325,15 +252,36 @@
                   </li>
                   <li>
                     <a href="#terminology" class="toc-h2 toc-link" data-title="Terminology">Terminology</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#asset-collateral-asset" class="toc-h3 toc-link" data-title="Asset / Collateral Asset">Asset / Collateral Asset</a>
+                        </li>
+                        <li>
+                          <a href="#symbol-futures-contract" class="toc-h3 toc-link" data-title="Symbol / Futures Contract">Symbol / Futures Contract</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#making-rest-api-calls" class="toc-h2 toc-link" data-title="Making REST API Calls">Making REST API Calls</a>
                   </li>
                   <li>
                     <a href="#authenticate-a-restful-request" class="toc-h2 toc-link" data-title="Authenticate a RESTful Request">Authenticate a RESTful Request</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#create-request" class="toc-h3 toc-link" data-title="Create Request">Create Request</a>
+                        </li>
+                        <li>
+                          <a href="#sign-a-request" class="toc-h3 toc-link" data-title="Sign a Request">Sign a Request</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#api-permissions" class="toc-h2 toc-link" data-title="API Permissions">API Permissions</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#permissions-bird-39-s-eye-view" class="toc-h3 toc-link" data-title="Permissions - Bird's-eye View">Permissions - Bird's-eye View</a>
+                        </li>
+                    </ul>
                   </li>
               </ul>
           </li>
@@ -342,15 +290,101 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#market-data-public" class="toc-h2 toc-link" data-title="Market Data (Public)">Market Data (Public)</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#futures-collateral-assets" class="toc-h3 toc-link" data-title="Futures Collateral Assets">Futures Collateral Assets</a>
+                        </li>
+                        <li>
+                          <a href="#futures-contracts" class="toc-h3 toc-link" data-title="Futures Contracts">Futures Contracts</a>
+                        </li>
+                        <li>
+                          <a href="#bar-info" class="toc-h3 toc-link" data-title="Bar Info">Bar Info</a>
+                        </li>
+                        <li>
+                          <a href="#historical-bar-data" class="toc-h3 toc-link" data-title="Historical Bar Data">Historical Bar Data</a>
+                        </li>
+                        <li>
+                          <a href="#ticker" class="toc-h3 toc-link" data-title="Ticker">Ticker</a>
+                        </li>
+                        <li>
+                          <a href="#market-trades" class="toc-h3 toc-link" data-title="Market Trades">Market Trades</a>
+                        </li>
+                        <li>
+                          <a href="#reference-prices" class="toc-h3 toc-link" data-title="Reference Prices">Reference Prices</a>
+                        </li>
+                        <li>
+                          <a href="#futures-market-data" class="toc-h3 toc-link" data-title="Futures Market Data">Futures Market Data</a>
+                        </li>
+                        <li>
+                          <a href="#futures-funding-rates" class="toc-h3 toc-link" data-title="Futures Funding Rates">Futures Funding Rates</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#private-data" class="toc-h2 toc-link" data-title="Private Data">Private Data</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#account-info" class="toc-h3 toc-link" data-title="Account Info">Account Info</a>
+                        </li>
+                        <li>
+                          <a href="#collateral-balance" class="toc-h3 toc-link" data-title="Collateral Balance">Collateral Balance</a>
+                        </li>
+                        <li>
+                          <a href="#contract-position" class="toc-h3 toc-link" data-title="Contract Position">Contract Position</a>
+                        </li>
+                        <li>
+                          <a href="#account-risk-profile" class="toc-h3 toc-link" data-title="Account Risk Profile">Account Risk Profile</a>
+                        </li>
+                        <li>
+                          <a href="#funding-payment-history" class="toc-h3 toc-link" data-title="Funding Payment History">Funding Payment History</a>
+                        </li>
+                        <li>
+                          <a href="#wallet-transaction-history" class="toc-h3 toc-link" data-title="Wallet Transaction History">Wallet Transaction History</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#transfer-funds-between-accounts" class="toc-h2 toc-link" data-title="Transfer Funds between Accounts">Transfer Funds between Accounts</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#from-cash-to-futures-account" class="toc-h3 toc-link" data-title="From Cash to Futures Account">From Cash to Futures Account</a>
+                        </li>
+                        <li>
+                          <a href="#from-futures-to-cash-account" class="toc-h3 toc-link" data-title="From Futures to Cash Account">From Futures to Cash Account</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#order" class="toc-h2 toc-link" data-title="Order">Order</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#place-an-order" class="toc-h3 toc-link" data-title="Place an Order">Place an Order</a>
+                        </li>
+                        <li>
+                          <a href="#cancel-an-order" class="toc-h3 toc-link" data-title="Cancel an Order">Cancel an Order</a>
+                        </li>
+                        <li>
+                          <a href="#place-batch-orders" class="toc-h3 toc-link" data-title="Place Batch Orders">Place Batch Orders</a>
+                        </li>
+                        <li>
+                          <a href="#cancel-batch-orders" class="toc-h3 toc-link" data-title="Cancel Batch Orders">Cancel Batch Orders</a>
+                        </li>
+                        <li>
+                          <a href="#cancel-all-orders" class="toc-h3 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
+                        </li>
+                        <li>
+                          <a href="#list-open-orders" class="toc-h3 toc-link" data-title="List Open Orders">List Open Orders</a>
+                        </li>
+                        <li>
+                          <a href="#query-order-by-id" class="toc-h3 toc-link" data-title="Query Order By ID">Query Order By ID</a>
+                        </li>
+                        <li>
+                          <a href="#historical-orders" class="toc-h3 toc-link" data-title="Historical Orders">Historical Orders</a>
+                        </li>
+                        <li>
+                          <a href="#list-current-history-orders" class="toc-h3 toc-link" data-title="List Current History Orders">List Current History Orders</a>
+                        </li>
+                    </ul>
                   </li>
               </ul>
           </li>
@@ -359,18 +393,91 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#guidelines" class="toc-h2 toc-link" data-title="Guidelines">Guidelines</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#general-message-request-handling-logic-from-client-side" class="toc-h3 toc-link" data-title="General Message Request/Handling Logic from Client Side">General Message Request/Handling Logic from Client Side</a>
+                        </li>
+                        <li>
+                          <a href="#websocket-request" class="toc-h3 toc-link" data-title="WebSocket Request">WebSocket Request</a>
+                        </li>
+                        <li>
+                          <a href="#keep-the-connection-alive-via-ping-pong" class="toc-h3 toc-link" data-title="Keep the Connection Alive via Ping/Pong">Keep the Connection Alive via Ping/Pong</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#websocket-authentication" class="toc-h2 toc-link" data-title="WebSocket Authentication">WebSocket Authentication</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#method-1-websocket-authentication-with-request-headers" class="toc-h3 toc-link" data-title="Method 1 - WebSocket Authentication with Request Headers">Method 1 - WebSocket Authentication with Request Headers</a>
+                        </li>
+                        <li>
+                          <a href="#method-2-websocket-authentication-by-sending-the-auth-message" class="toc-h3 toc-link" data-title="Method 2 - WebSocket Authentication by Sending the Auth Message">Method 2 - WebSocket Authentication by Sending the Auth Message</a>
+                        </li>
+                        <li>
+                          <a href="#authentication-response" class="toc-h3 toc-link" data-title="Authentication Response">Authentication Response</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#subscribe-to-data-channels" class="toc-h2 toc-link" data-title="Subscribe to Data Channels">Subscribe to Data Channels</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#how-to-subscribe" class="toc-h3 toc-link" data-title="How to Subscribe">How to Subscribe</a>
+                        </li>
+                        <li>
+                          <a href="#channel-bar-data" class="toc-h3 toc-link" data-title="Channel: Bar Data">Channel: Bar Data</a>
+                        </li>
+                        <li>
+                          <a href="#channel-level-1-order-book-data-bbo" class="toc-h3 toc-link" data-title="Channel: Level 1 Order Book Data (BBO)">Channel: Level 1 Order Book Data (BBO)</a>
+                        </li>
+                        <li>
+                          <a href="#channel-level-2-order-book-updates" class="toc-h3 toc-link" data-title="Channel: Level 2 Order Book Updates">Channel: Level 2 Order Book Updates</a>
+                        </li>
+                        <li>
+                          <a href="#channel-futures-market-data" class="toc-h3 toc-link" data-title="Channel: Futures Market Data">Channel: Futures Market Data</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#order-channels" class="toc-h2 toc-link" data-title="Order Channels">Order Channels</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#subscribe-all-order-related-channels" class="toc-h3 toc-link" data-title="Subscribe All Order-Related Channels">Subscribe All Order-Related Channels</a>
+                        </li>
+                        <li>
+                          <a href="#channel-order" class="toc-h3 toc-link" data-title="Channel: Order">Channel: Order</a>
+                        </li>
+                        <li>
+                          <a href="#channel-contract-position-updates" class="toc-h3 toc-link" data-title="Channel: Contract Position Updates">Channel: Contract Position Updates</a>
+                        </li>
+                        <li>
+                          <a href="#channel-futures-collateral-updates" class="toc-h3 toc-link" data-title="Channel: Futures Collateral Updates">Channel: Futures Collateral Updates</a>
+                        </li>
+                        <li>
+                          <a href="#channel-futures-account-risk" class="toc-h3 toc-link" data-title="Channel: Futures Account Risk">Channel: Futures Account Risk</a>
+                        </li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#websocket-data-request" class="toc-h2 toc-link" data-title="WebSocket - Data Request">WebSocket - Data Request</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#ws-orderbook-snapshot" class="toc-h3 toc-link" data-title="WS: Orderbook Snapshot">WS: Orderbook Snapshot</a>
+                        </li>
+                        <li>
+                          <a href="#ws-futures-account-risk" class="toc-h3 toc-link" data-title="WS: Futures Account Risk">WS: Futures Account Risk</a>
+                        </li>
+                        <li>
+                          <a href="#ws-place-order" class="toc-h3 toc-link" data-title="WS: Place Order">WS: Place Order</a>
+                        </li>
+                        <li>
+                          <a href="#ws-cancel-order" class="toc-h3 toc-link" data-title="WS: Cancel Order">WS: Cancel Order</a>
+                        </li>
+                        <li>
+                          <a href="#ws-cancel-all-orders" class="toc-h3 toc-link" data-title="WS: Cancel All Orders">WS: Cancel All Orders</a>
+                        </li>
+                    </ul>
                   </li>
               </ul>
           </li>
