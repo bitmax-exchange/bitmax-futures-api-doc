@@ -48,7 +48,7 @@ You should sign the message in header as specified in [**Authenticate a RESTful 
 You don't need to specify any parameter for this API.
 
 
-#### Response Content
+#### Response Content (Current)
 
  Name                   | Type     | Description                                                            | Sample Response
 ----------------------- | -------- | ---------------------------------------------------------------------- | -------------------------
@@ -65,6 +65,30 @@ You don't need to specify any parameter for this API.
 **positionPnl**         | `String` | contract position profit/loss in USDT                                  | `"9533.528686427"`
 **indexPrice**          | `String` | underlying index price                                                 | `"7818.4225"`  
 **markPrice**           | `String` | contract mark price                                                    | `"7826.875312457"`
+
+
+#### Response Content (New Schema, will be in effect at 2020-07-13 12:00 UTC)
+
+ Name                   | Type     | Description                                                            | Sample Response
+----------------------- | -------- | ---------------------------------------------------------------------- | -------------------------
+**symbol**              | `String` | contract symbol                                                        | `"BTC-PERP"`
+**displayName**         | `String` | the name that will be displayed on the website                         | `"BTCUSDT"`
+**breakevenPrice**      | `String` | break-even price                                                       | `"12805.265370586"`
+**estLiquidationPrice** | `String` | estimated liquidation price                                            | `"16365.898288993"`
+**collateralInUse**     | `String` | collateral in Use (in USDT)                                            | `"1350.314802427"`
+**maxBuyOrderSize**     | `String` | maximum quantity allowed to buy (deprecated, use **maxBuyNotional**)   | `"44.612137464"`
+**maxSellOrderSize**    | `String` | maximum quantity allowed to sell (deprecated, use **maxSellNotional**) | `"38.962207464"`
+**maxBuyNotional**      | `String` | maximum notional allowed to buy                                        | `"44.612137464"`
+**maxSellNotional**     | `String` | maximum notional allowed to sell                                       | `"38.962207464"`
+**position**            | `String` | contract position                                                      | `"-2.8535"`
+**positionNotional**    | `String` | contract position notional value in USDT                               | `"-27006.296048541"`
+**positionPnl**         | `String` | contract position profit/loss in USDT                                  | `"9533.528686427"`
+**indexPrice**          | `String` | underlying index price                                                 | `"7818.4225"`  
+**markPrice**           | `String` | contract mark price                                                    | `"7826.875312457"`
+
+**Remark**: from 2020-07-13 12:00 UTC onward, the BitMax.io website, the Andriod App, and the iOS App will be showing displayName (`BTCUSDT`) instead of 
+symbol (`BTC-PERP`) as indicated in the response body of this API. This is for display purposes only. API users should continue to use symbol (`BTC-PERP`) 
+to make API calls and to parse RESTful responses and WebSocket messages from the server.  
 
 
 #### Code Sample
