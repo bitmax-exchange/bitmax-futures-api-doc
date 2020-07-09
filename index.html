@@ -499,6 +499,11 @@
 
 <p>The RESTful API has JSON-encoded responses. All websocket messages are JSON-encoded. </p>
 <h2 id='change-log'>Change Log</h2>
+<p><strong>2020-07-09</strong></p>
+
+<p>From 2020-07-13 12:00 UTC onward, the <a href="#contract-position">Contract Position</a> API will include an additional field <code>displayName</code>. For BTC Contract settled in USDT (<code>symbol=BTC-PERP</code>),
+the <code>displayName</code> will be <code>BTCUSDT</code>. It is for display purposes only. API users should continue to use <code>BTC-PERP</code> when making API calls and parsing RESTful responses and WebSocket messages.</p>
+
 <p><strong>2020-04-05</strong></p>
 
 <p>Added three fields to WebSocket channel <code>futures-collateral</code>: requestId <code>id</code>, transactionType <code>tp</code>, and transaction number <code>txNum</code>.</p>
@@ -1851,7 +1856,7 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 <p><code>&lt;timestamp&gt;+futures/position</code></p>
 <h4 id='request-parameters'>Request Parameters</h4>
 <p>You don&#39;t need to specify any parameter for this API.</p>
-<h4 id='response-content'>Response Content</h4>
+<h4 id='response-content-current'>Response Content (Current)</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1939,6 +1944,104 @@ be a list of objects, append a comma (e.g. <code>symbol=BTC-PERP,</code>).</p>
 <td><code>&quot;7826.875312457&quot;</code></td>
 </tr>
 </tbody></table>
+<h4 id='response-content-new-schema-will-be-in-effect-at-2020-07-13-12-00-utc'>Response Content (New Schema, will be in effect at 2020-07-13 12:00 UTC)</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>symbol</strong></td>
+<td><code>String</code></td>
+<td>contract symbol</td>
+<td><code>&quot;BTC-PERP&quot;</code></td>
+</tr>
+<tr>
+<td><strong>displayName</strong></td>
+<td><code>String</code></td>
+<td>the name that will be displayed on the website</td>
+<td><code>&quot;BTCUSDT&quot;</code></td>
+</tr>
+<tr>
+<td><strong>breakevenPrice</strong></td>
+<td><code>String</code></td>
+<td>break-even price</td>
+<td><code>&quot;12805.265370586&quot;</code></td>
+</tr>
+<tr>
+<td><strong>estLiquidationPrice</strong></td>
+<td><code>String</code></td>
+<td>estimated liquidation price</td>
+<td><code>&quot;16365.898288993&quot;</code></td>
+</tr>
+<tr>
+<td><strong>collateralInUse</strong></td>
+<td><code>String</code></td>
+<td>collateral in Use (in USDT)</td>
+<td><code>&quot;1350.314802427&quot;</code></td>
+</tr>
+<tr>
+<td><strong>maxBuyOrderSize</strong></td>
+<td><code>String</code></td>
+<td>maximum quantity allowed to buy (deprecated, use <strong>maxBuyNotional</strong>)</td>
+<td><code>&quot;44.612137464&quot;</code></td>
+</tr>
+<tr>
+<td><strong>maxSellOrderSize</strong></td>
+<td><code>String</code></td>
+<td>maximum quantity allowed to sell (deprecated, use <strong>maxSellNotional</strong>)</td>
+<td><code>&quot;38.962207464&quot;</code></td>
+</tr>
+<tr>
+<td><strong>maxBuyNotional</strong></td>
+<td><code>String</code></td>
+<td>maximum notional allowed to buy</td>
+<td><code>&quot;44.612137464&quot;</code></td>
+</tr>
+<tr>
+<td><strong>maxSellNotional</strong></td>
+<td><code>String</code></td>
+<td>maximum notional allowed to sell</td>
+<td><code>&quot;38.962207464&quot;</code></td>
+</tr>
+<tr>
+<td><strong>position</strong></td>
+<td><code>String</code></td>
+<td>contract position</td>
+<td><code>&quot;-2.8535&quot;</code></td>
+</tr>
+<tr>
+<td><strong>positionNotional</strong></td>
+<td><code>String</code></td>
+<td>contract position notional value in USDT</td>
+<td><code>&quot;-27006.296048541&quot;</code></td>
+</tr>
+<tr>
+<td><strong>positionPnl</strong></td>
+<td><code>String</code></td>
+<td>contract position profit/loss in USDT</td>
+<td><code>&quot;9533.528686427&quot;</code></td>
+</tr>
+<tr>
+<td><strong>indexPrice</strong></td>
+<td><code>String</code></td>
+<td>underlying index price</td>
+<td><code>&quot;7818.4225&quot;</code></td>
+</tr>
+<tr>
+<td><strong>markPrice</strong></td>
+<td><code>String</code></td>
+<td>contract mark price</td>
+<td><code>&quot;7826.875312457&quot;</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Remark</strong>: from 2020-07-13 12:00 UTC onward, the BitMax.io website, the Andriod App, and the iOS App will be showing displayName (<code>BTCUSDT</code>) instead of 
+symbol (<code>BTC-PERP</code>) as indicated in the response body of this API. This is for display purposes only. API users should continue to use symbol (<code>BTC-PERP</code>) 
+to make API calls and to parse RESTful responses and WebSocket messages from the server.  </p>
 <h4 id='code-sample'>Code Sample</h4>
 <p>Please refer to python code to <a href="https://github.com/bitmax-exchange/bitmax-futures-api-demo/blob/master/python/query-futures-position.py">query funding payments</a></p>
 <h3 id='account-risk-profile'>Account Risk Profile</h3>
