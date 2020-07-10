@@ -292,10 +292,10 @@
                     <a href="#market-data-public" class="toc-h2 toc-link" data-title="Market Data (Public)">Market Data (Public)</a>
                     <ul class="toc-list-h3">
                         <li>
-                          <a href="#futures-collateral-assets" class="toc-h3 toc-link" data-title="Futures Collateral Assets">Futures Collateral Assets</a>
+                          <a href="#list-futures-collateral-assets" class="toc-h3 toc-link" data-title="List Futures Collateral Assets">List Futures Collateral Assets</a>
                         </li>
                         <li>
-                          <a href="#futures-contracts" class="toc-h3 toc-link" data-title="Futures Contracts">Futures Contracts</a>
+                          <a href="#list-futures-contracts" class="toc-h3 toc-link" data-title="List Futures Contracts">List Futures Contracts</a>
                         </li>
                         <li>
                           <a href="#bar-info" class="toc-h3 toc-link" data-title="Bar Info">Bar Info</a>
@@ -501,7 +501,7 @@
 <h2 id='change-log'>Change Log</h2>
 <p><strong>2020-07-09</strong></p>
 
-<p>From 2020-07-13 12:00 UTC onward, the <a href="#futures-contracts">Futures Contracts</a> API will include an additional field <code>displayName</code>. For BTC Contract settled in USDT (<code>symbol=BTC-PERP</code>),
+<p>From 2020-07-13 12:00 UTC onward, the <a href="#list-futures-contracts">List Futures Contracts</a> API will include an additional field <code>displayName</code>. For BTC Contract settled in USDT (<code>symbol=BTC-PERP</code>),
 the <code>displayName</code> will be <code>BTCUSDT</code>. It is for display purposes only. API users should continue to use <code>BTC-PERP</code> when making API calls and parsing RESTful responses and WebSocket messages.</p>
 
 <p><strong>2020-04-05</strong></p>
@@ -819,9 +819,9 @@ to apply for new API keys. </p>
 </tbody></table>
 <h1 id='rest-apis-futures'>REST APIs - Futures</h1><h2 id='market-data-public'>Market Data (Public)</h2>
 <p>Anyone can access public market data.  </p>
-<h3 id='futures-collateral-assets'>Futures Collateral Assets</h3>
+<h3 id='list-futures-collateral-assets'>List Futures Collateral Assets</h3>
 <blockquote>
-<p>Futures Collateral Assets </p>
+<p>List Futures Collateral Assets </p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET https://bitmax.io/api/pro/v1/futures/collateral
 </code></pre></div>
@@ -882,9 +882,9 @@ the total collateral value of your account. </p>
 <p>The exchange calculates the total collateral value of an account based on its adjusted USDT value 
 (<strong>discount factor * reference price * collateral balance</strong>). The <strong>collateral value</strong> of the account is simply the sum of 
 the adjusted USDT value of its all collateral assets. </p>
-<h3 id='futures-contracts'>Futures Contracts</h3>
+<h3 id='list-futures-contracts'>List Futures Contracts</h3>
 <blockquote>
-<p>Futures Contracts</p>
+<p>List Futures Contracts</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET https://bitmax.io/api/pro/v1/futures/contracts
 </code></pre></div>
