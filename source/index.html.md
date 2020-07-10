@@ -95,7 +95,7 @@ The RESTful API has JSON-encoded responses. All websocket messages are JSON-enco
 
 **2020-07-09**
 
-From 2020-07-13 12:00 UTC onward, the [Contract Position](#contract-position) API will include an additional field `displayName`. For BTC Contract settled in USDT (`symbol=BTC-PERP`),
+From 2020-07-13 12:00 UTC onward, the [Futures Contracts](#futures-contracts) API will include an additional field `displayName`. For BTC Contract settled in USDT (`symbol=BTC-PERP`),
 the `displayName` will be `BTCUSDT`. It is for display purposes only. API users should continue to use `BTC-PERP` when making API calls and parsing RESTful responses and WebSocket messages.
 
 
