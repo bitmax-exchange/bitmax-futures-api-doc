@@ -1,6 +1,6 @@
-### Futures Collateral Assets 
+### List Futures Collateral Assets 
 
-> Futures Collateral Assets 
+> List Futures Collateral Assets 
 
 ```shell
 curl -X GET https://bitmax.io/api/pro/v1/futures/collateral

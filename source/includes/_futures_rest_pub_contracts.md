@@ -1,6 +1,6 @@
-### Futures Contracts
+### List Futures Contracts
 
-> Futures Contracts
+> List Futures Contracts
 
 ```shell
 curl -X GET https://bitmax.io/api/pro/v1/futures/contracts
