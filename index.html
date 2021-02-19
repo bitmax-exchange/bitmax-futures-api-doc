@@ -489,7 +489,12 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='bitmax-futures-trading-api-documentation'>BitMax Futures Trading API Documentation</h1><h2 id='using-bitmax-futures-trading-api'>Using BitMax Futures Trading API</h2>
+        <h1 id='bitmax-futures-trading-api-documentation'>BitMax Futures Trading API Documentation</h1>
+<aside class="warning">Deprecation Warning</aside>
+
+<p>In preparation for new Futures trading products, BitMax will stop supporting all API endpoints in this document on Feb 28, 2021. Please refer to 
+<a href="https://bitmax-exchange.github.io/bitmax-futures-api-doc-v2/#introducing-futures-pro-v2-apis-testnet-only">Futures Pro (v2) API</a> for our newest APIs.</p>
+<h2 id='using-bitmax-futures-trading-api'>Using BitMax Futures Trading API</h2>
 <p>The BitMax Futures API is based on RESTful and WebSocket. </p>
 
 <ul>
@@ -4664,9 +4669,9 @@ value into one aggregated item. Each trade object contains the following fields:
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbo"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573068442532</span><span class="p">,</span><span class="w">
     </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573068442532</span><span class="p">,</span><span class="w">
         </span><span class="nl">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="s2">"9309.11"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"0.25"</span><span class="w">
