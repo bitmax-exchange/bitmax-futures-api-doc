@@ -80,6 +80,13 @@ search: true
 
 # BitMax Futures Trading API Documentation
 
+
+<aside class="warning">Deprecation Warning</aside>
+
+In preparation for new Futures trading products, BitMax will stop supporting all API endpoints in this document on Feb 28, 2021. Please refer to 
+[Futures Pro (v2) API](https://bitmax-exchange.github.io/bitmax-futures-api-doc-v2/#introducing-futures-pro-v2-apis-testnet-only) for our newest APIs.
+
+
 ## Using BitMax Futures Trading API 
 
 The BitMax Futures API is based on RESTful and WebSocket. 
